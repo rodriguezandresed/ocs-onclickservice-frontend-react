@@ -1,11 +1,13 @@
 import React from "react";
-import { BrowserRouter, Route} from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar/navbar.jsx";
+import { Register } from "./component/register/register.jsx";
+import { Login } from "./component/login/login.jsx";
 import { Footer } from "./component/footer";
 import "../styles/gradients.css"
 import "../styles/index.css"
@@ -22,9 +24,11 @@ const Layout = () => {
 					<div className="gradient__bg">
 						<Navbar />
 					</div>
-						<Route exact path="/">
-							<Home />
-						</Route>
+						<Routes>
+							<Route path="/" element={<Home />}/>
+							<Route path="/Register" element={<Register />}/>
+							<Route path="/Login" element={<Login />}/>
+						</Routes>
 					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>

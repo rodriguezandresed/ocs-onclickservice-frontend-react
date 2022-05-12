@@ -21,15 +21,21 @@ export const Navbar = () => {
 		<div className="ocs__navbar">
 			<div className="ocs__navbar-links">
 				<div className="ocs__navbar-links_logo">
-					<img src={logo} alt="logo" />
+					<Link to="/">
+						<img src={logo} alt="logo" />
+					</Link>
 				</div>
 				<div className="ocs__navbar-links_container">
 					<Menu />
 				</div>
 			</div>
 			<div className="ocs__navbar-sign">
-				<p>Sign In</p>
-				<button type="button">Sign Up</button>
+				<Link to="/Login">
+					<p>Ingresar</p>
+				</Link>
+				<Link to="/Register">
+					<button type="button">Registro</button>
+				</Link>
 			</div>
 			<div className="ocs__navbar-menu">
 				{toggleMenu
@@ -42,7 +48,9 @@ export const Navbar = () => {
 							<Menu />
 							<div className="ocs__navbar-menu_container-links-sign">
 								<p>Sign In</p>
-								<button type="button">Sign Up</button>
+								<Link to="/Register">
+									<button type="button">Sign Up</button>
+								</Link>
 							</div>
 						</div>
 					</div>
