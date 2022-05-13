@@ -6,8 +6,8 @@ import { Home } from "./views/home";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar/navbar.jsx";
-import { Register } from "./component/register/register.jsx";
-import { Login } from "./component/login/login.jsx";
+import Register from "./component/register/Register.jsx";
+import Login from "./component/login/Login.jsx"
 import { Footer } from "./component/footer";
 import "../styles/gradients.css"
 import "../styles/index.css"
