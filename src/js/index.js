@@ -5,6 +5,9 @@ import ReactDOM from "react-dom";
 //include your index.scss file into the bundle
 import "../styles/index.css";
 import "../styles/gradients.css";
+import "./component/perfil/perfil.css"
+import "./component/registerservicio/registerservicio.css"
+import "./component/perfilservicio/perfilservicio.css"
 
 //import your own components
 import Layout from "./layout";

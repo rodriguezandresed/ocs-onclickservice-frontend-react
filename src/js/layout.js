@@ -8,9 +8,16 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar/navbar.jsx";
 import { Register } from "./component/register/register.jsx";
 import { Login } from "./component/login/login.jsx";
+import { Perfil } from "./component/perfil/perfil.jsx";
 import { Footer } from "./component/footer";
+import { Registerservicio } from "./component/registerservicio/registerservicio.jsx";
+import { Perfilservicio } from "./component/perfilservicio/perfilservicio.jsx";
+
 import "../styles/gradients.css"
 import "../styles/index.css"
+import "./component/perfil/perfil.css"
+import "./component/registerservicio/registerservicio.css"
+import "./component/perfilservicio/perfilservicio.css"
 
 //create your first component
 const Layout = () => {
@@ -28,6 +35,10 @@ const Layout = () => {
 							<Route path="/" element={<Home />}/>
 							<Route path="/Register" element={<Register />}/>
 							<Route path="/Login" element={<Login />}/>
+							<Route path="/Perfil" element={<Perfil />}/>
+							<Route path="/Registerservicio" element={<Registerservicio />}/>
+							<Route path="/Perfilservicio" element={<Perfilservicio />}/>
+
 						</Routes>
 					<Footer />
 				</ScrollToTop>
