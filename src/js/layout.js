@@ -8,6 +8,12 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar/navbar.jsx";
 import Register from "./component/register/Register.jsx";
 import Login from "./component/login/Login.jsx"
+import Plomeria from "./component/plomeria/plomeria.jsx";
+import Jardineria from "./component/jardineria/Jardineria.jsx";
+import Refrigeracion from "./component/refrigeracion/Refrigeracion.jsx";
+import Electricidad from "./component/electricidad/Electricidad.jsx";
+import Mecanica from "./component/mecanica/Mecanica.jsx";
+import Limpieza from "./component/limpieza/Limpieza.jsx";
 import { Footer } from "./component/footer";
 import "../styles/gradients.css"
 import "../styles/index.css"
@@ -28,6 +34,12 @@ const Layout = () => {
 							<Route path="/" element={<Home />}/>
 							<Route path="/Register" element={<Register />}/>
 							<Route path="/Login" element={<Login />}/>
+							<Route path="/Plomeria" element={<Plomeria />}/>
+							<Route path="/Jardineria" element={<Jardineria />}/>
+							<Route path="/Refrigeracion" element={<Refrigeracion />}/>
+							<Route path="/Electricidad" element={<Electricidad />}/>
+							<Route path="/Mecanica" element={<Mecanica />}/>
+							<Route path="/Limpieza" element={<Limpieza />}/>
 						</Routes>
 					<Footer />
 				</ScrollToTop>

@@ -1,11 +1,11 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { Header } from "../component/header/Header.jsx";
-
+import Servicios from "../component/servicios/Servicios.jsx";
 
 export const Home = () => (
 	<div>
 		<Header />
+		<Servicios />
 	</div>
 );

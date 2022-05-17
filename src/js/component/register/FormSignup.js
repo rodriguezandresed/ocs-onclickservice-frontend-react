@@ -1,14 +1,52 @@
-import React from 'react';
-import validate from './validateInfo';
-import useForm from './useForm';
+import React, { useContext, useEffect, useState} from "react";
+import validateInfo from './validateInfo';
 import './Form.css';
 import { Link } from "react-router-dom";
+import { Context } from "../../store/appContext"
 
 const FormSignup = ({ submitForm }) => {
-    const { handleChange, handleSubmit, values, errors } = useForm(
-        submitForm,
-        validate
-    );
+    let initialState = {
+        nombre: "",
+        email: "",
+        password: "",
+        password2:"",
+        fecha_registro: "2022-05-12",
+        tipo_usuario: "General"
+      }
+   
+    const { actions } = useContext(Context);
+
+    const [values, setValues] = useState(initialState);
+    const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
+      const handleChange = e => {
+        const { name, value } = e.target;
+        setValues({
+          ...values,
+          [name]: value
+        });
+      };
+    
+      const handleSubmit = e => {
+        
+        setErrors(validateInfo(values))
+        
+        if (errors.nombre != "" || errors.email != "" || errors.password != "" || errors.password2 != ""){
+            setIsSubmitting(true);
+        }
+        
+      };
+
+    //   useEffect(
+    //     () => {
+    //       if (Object.keys(errors).length === 0) {
+    //         submitForm();
+    //       }
+    //     },
+    //     [errors]
+    //   );
+    
 
     return (
         <div className='form-content-right'>
@@ -64,11 +102,11 @@ const FormSignup = ({ submitForm }) => {
                     />
                     {errors.password2 && <p>{errors.password2}</p>}
                 </div>
-                <button className='form-input-btn' type='submit'>
+                <button className='form-input-btn' type='button' onClick={handleSubmit}>
                     Registrate
                 </button>
                 <span className='form-input-login'>
-                ¿Ya tienes una cuenta? Puedes ingresar <Link to="/login">
+                    ¿Ya tienes una cuenta? Puedes ingresar <Link to="/login">
                         Aqui
                     </Link>
                 </span>
