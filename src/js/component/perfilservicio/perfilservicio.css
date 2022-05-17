@@ -2,3 +2,16 @@
     color: gold;
     font-size: 50px;
 }
+.list-servicios{
+    font-size: 20px;
+    font-weight: 500;
+}
+.list-servicios a:hover{
+    color: #04386a;
+}
+.carousel-control-next{
+    display: none;
+}
+.carousel-indicators{
+    margin-bottom: 0px;
+}

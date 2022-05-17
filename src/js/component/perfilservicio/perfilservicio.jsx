@@ -9,28 +9,71 @@ export const Perfilservicio = () => {
             <div className="modal-dialog">
                 <div className="modal-content">
                 <div className="modal-header">
-                    <h2 className="modal-title" id="exampleModalLabel">Editar datos</h2>
+                    <h2 className="modal-title" id="exampleModalLabel">Información del servicio</h2>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
-                    <form>
-                    <div className="mb-3">
-                        <label for="recipient-name" className="col-form-label">Nombre y apellido:</label>
-                        <input type="text" className="form-control" id="recipient-name"/>
+                    <div className="rom">                        
+                        <div className="col-12">
+                            <h4>Tipo de servicio</h4>
+                            <p>Plomeria</p>
+                        </div>
+                        <div className="col-12">
+                            <h4>Descripción del servicio</h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        </div>
+                        <div className="col-12">
+                            <h4>Experiencia en el area</h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        </div>
+                        <div className="col-12">
+                            <h4>Imagenes del trabajo</h4>
+                            <div class="row">
+                                <div className="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                                    <img
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                                    className="w-100 shadow-1-strong rounded mb-4"
+                                    alt="Boat on Calm Water"
+                                    />
+
+                                    <img
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"
+                                    className="w-100 shadow-1-strong rounded mb-4"
+                                    alt="Wintry Mountain Landscape"
+                                    />
+                                </div>
+
+                                <div className="col-lg-4 mb-4 mb-lg-0">
+                                    <img
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+                                    className="w-100 shadow-1-strong rounded mb-4"
+                                    alt="Mountains in the Clouds"
+                                    />
+
+                                    <img
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                                    className="w-100 shadow-1-strong rounded mb-4"
+                                    alt="Boat on Calm Water"
+                                    />
+                                </div>
+
+                                <div className="col-lg-4 mb-4 mb-lg-0">
+                                    <img
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp"
+                                    className="w-100 shadow-1-strong rounded mb-4"
+                                    alt="Waves at Sea"
+                                    />
+
+                                    <img
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"
+                                    className="w-100 shadow-1-strong rounded mb-4"
+                                    alt="Yosemite National Park"
+                                    />
+                                </div>
+                                </div>
+                        </div>
+
                     </div>
-                    <div className="mb-3">
-                        <label for="recipient-user" className="col-form-label">Usuario:</label>
-                        <input type="text" className="form-control" id="recipient-user"/>
-                    </div>
-                    <div className="mb-3">
-                        <label for="recipient-email" class="col-form-label">Email</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1"/>
-                    </div>
-                    <div className="mb-3">
-                        <label for="recipient-pagina-web" className="col-form-label">Página web:</label>
-                        <input type="text" className="form-control" id="recipient-pagina-web"/>
-                    </div>
-                    </form>
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -98,6 +141,12 @@ export const Perfilservicio = () => {
                                             <p>Cristhian Cotte</p>
                                         </div>
                                         <div className="col-5 mt-3">
+                                            <h4>Dirección</h4>
+                                        </div>
+                                        <div className="col-7 datos-perfil mt-3">
+                                            <p>Distrito Capital</p>
+                                        </div>
+                                        <div className="col-5 mt-3">
                                             <h4>Correo</h4>
                                         </div>
                                         <div className="col-7 datos-perfil mt-3">
@@ -115,13 +164,25 @@ export const Perfilservicio = () => {
                                         <div className="col-7 datos-perfil mt-3">
                                             <p>prueba.com</p>
                                         </div>
-                                        <div className="col-2">
-                                           <button type="button" className='edita-tu-perfil' data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i className="fa-solid fa-pencil fa-2x edit-perfil"></i> </button> 
-                                        </div>
+                                        
                                        
                                        
                                     </div>
                                 
+                                </div>
+                                </div>
+                            </div>
+                            <div className="accordion-item">
+                                <h2 className="accordion-header" id="flush-headingFour">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                <i className="fa-solid fa-user-tie fa-2x mx-2"></i>  Servicios
+                                </button>
+                                </h2>
+                                <div id="flush-collapseFour" className="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                <div className="accordion-body list-servicios">
+                                   <p><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Plomeria</a></p> 
+                                   <p><a href="#">Electricidad</a></p> 
+                                   <p><a href="#">Chef</a></p> 
                                 </div>
                                 </div>
                             </div>
@@ -138,23 +199,42 @@ export const Perfilservicio = () => {
                             <div className="accordion-item">
                                 <h2 className="accordion-header" id="flush-headingThree">
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                <i className="fa-solid fa-location-dot fa-2x mx-2"></i>  Direcciones
+                                <i className="fa-solid fa-comments fa-2x mx-2"></i>  Comentarios
                                 </button>
                                 </h2>
                                 <div id="flush-collapseThree" className="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                                <div className="accordion-body">
+                                <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="true">
+                                    <div className="carousel-indicators">
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    </div>
+                                    <div className="carousel-inner">
+                                        <div className="carousel-item active">
+                                            <h4>Autor</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium doloribus assumenda vero, ut debitis impedit id sapiente quia eos adipisci iusto, dolorum recusandae excepturi! Quos error totam vel facere eligendi!</p>
+                                        </div>
+                                        <div className="carousel-item">
+                                        <h4>Autor</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium doloribus assumenda vero, ut debitis impedit id sapiente quia eos adipisci iusto, dolorum recusandae excepturi! Quos error totam vel facere eligendi!</p>
+                                        </div>
+                                        <div className="carousel-item">
+                                        <h4>Autor</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium doloribus assumenda vero, ut debitis impedit id sapiente quia eos adipisci iusto, dolorum recusandae excepturi! Quos error totam vel facere eligendi!</p>
+                                        </div>
+                                    </div>
+                
+                                    </div>
+                                    <div className="mb-3">
+                                        <label for="exampleFormControlTextarea1" className="form-label"><h4>Agregar Comentarios </h4></label>
+                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    </div>
                                 </div>
+                             </div>
+                              
                             </div>
-                            <div className="accordion-item">
-                                <h2 className="accordion-header" id="flush-headingFour">
-                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                                <i className="fa-solid fa-user-tie fa-2x mx-2"></i>  Servicios
-                                </button>
-                                </h2>
-                                <div id="flush-collapseFour" className="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                                <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-                                </div>
-                            </div>
+                           
                             </div>
 
                 </div>
