@@ -23,8 +23,8 @@ export const Perfil = () => {
                         <input type="text" className="form-control" id="recipient-user"/>
                     </div>
                     <div className="mb-3">
-                        <label for="recipient-email" class="col-form-label">Email</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1"/>
+                        <label for="recipient-email" className="col-form-label">Email</label>
+                        <input type="email" className="form-control" id="exampleFormControlInput1"/>
                     </div>
                     <div className="mb-3">
                         <label for="recipient-pagina-web" className="col-form-label">Página web:</label>

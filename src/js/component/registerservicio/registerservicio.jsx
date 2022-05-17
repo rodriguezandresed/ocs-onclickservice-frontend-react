@@ -35,13 +35,13 @@ export const Registerservicio = () => {
                     </div>
                     <div className="form-group">
                         <label for="exampleFormControlFile1">Subir curriculum</label><br />
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
+                        <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
                     </div>
-                    <div class="form-check mt-2">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-                        <label class="form-check-label" for="exampleCheck1">He leido y acepto las politicas de seguridad</label>
+                    <div className="form-check mt-2">
+                        <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+                        <label className="form-check-label" for="exampleCheck1">He leido y acepto las politicas de seguridad</label>
                     </div>
-                    <button type="submit" class="btn servicio-emviar mt-2">Enviar</button>
+                    <button type="submit" className="btn servicio-emviar mt-2">Enviar</button>
                 </form>
 
                 </div>
