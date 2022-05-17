@@ -15,19 +15,19 @@ export const Perfil = () => {
                 <div className="modal-body">
                     <form>
                     <div className="mb-3">
-                        <label for="recipient-name" className="col-form-label">Nombre y apellido:</label>
+                        <label htmlFor="recipient-name" className="col-form-label">Nombre y apellido:</label>
                         <input type="text" className="form-control" id="recipient-name"/>
                     </div>
                     <div className="mb-3">
-                        <label for="recipient-user" className="col-form-label">Usuario:</label>
+                        <label htmlFor="recipient-user" className="col-form-label">Usuario:</label>
                         <input type="text" className="form-control" id="recipient-user"/>
                     </div>
                     <div className="mb-3">
-                        <label for="recipient-email" className="col-form-label">Email</label>
+                        <label htmlFor="recipient-email" className="col-form-label">Email</label>
                         <input type="email" className="form-control" id="exampleFormControlInput1"/>
                     </div>
                     <div className="mb-3">
-                        <label for="recipient-pagina-web" className="col-form-label">Página web:</label>
+                        <label htmlFor="recipient-pagina-web" className="col-form-label">Página web:</label>
                         <input type="text" className="form-control" id="recipient-pagina-web"/>
                     </div>
                     </form>
