@@ -6,17 +6,12 @@ import { Home } from "./views/home";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar/navbar.jsx";
-import Register from "./component/register/Register.jsx";
-import Login from "./component/login/Login.jsx"
-import Plomeria from "./component/plomeria/plomeria.jsx";
-import Jardineria from "./component/jardineria/Jardineria.jsx";
-import Refrigeracion from "./component/refrigeracion/Refrigeracion.jsx";
-import Electricidad from "./component/electricidad/Electricidad.jsx";
-import Mecanica from "./component/mecanica/Mecanica.jsx";
-import Limpieza from "./component/limpieza/Limpieza.jsx";
-import { Footer } from "./component/footer";
+import Login from "./component/login/login.jsx"
+import Proveedores from "./component/proveedores/Proveedores.jsx";
+import Footer from "./component/footer/Footer.jsx";
 import "../styles/gradients.css"
 import "../styles/index.css"
+import FormSignup from "./component/register/FormSignup";
 
 //create your first component
 const Layout = () => {
@@ -32,18 +27,16 @@ const Layout = () => {
 					</div>
 						<Routes>
 							<Route path="/" element={<Home />}/>
-							<Route path="/Register" element={<Register />}/>
-							<Route path="/Login" element={<Login />}/>
-							<Route path="/Plomeria" element={<Plomeria />}/>
-							<Route path="/Jardineria" element={<Jardineria />}/>
-							<Route path="/Refrigeracion" element={<Refrigeracion />}/>
-							<Route path="/Electricidad" element={<Electricidad />}/>
-							<Route path="/Mecanica" element={<Mecanica />}/>
-							<Route path="/Limpieza" element={<Limpieza />}/>
+							<Route path="/register" element={<FormSignup />}/>
+							<Route path="/login" element={<Login />}/>
+							<Route path="/proveedores/:categoria" element={<Proveedores />}/>
 						</Routes>
-					<Footer />
-				</ScrollToTop>
+					<footer className="gradient__bg2">
+						<Footer />
+					</footer>
+				</ScrollToTop>	
 			</BrowserRouter>
+
 	);
 };
 

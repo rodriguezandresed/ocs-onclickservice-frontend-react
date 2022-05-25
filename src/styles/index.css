@@ -1,3 +1,7 @@
+html {
+    height: 100%;
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -7,6 +11,9 @@
 
 body {
     background: #edf5e1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;   
 }
 
 a {
@@ -15,6 +22,24 @@ a {
 }
 
 .gradient__bg {
+    background: -moz-radial-gradient(circle at 0% 0%, rgba(92, 187, 149, 1) 41%, rgba(5, 56, 107, 1) 100%);
+
+
+    background: -webkit-radial-gradient(circle at 0% 0%, rgba(92, 187, 149, 1) 41%, rgba(5, 56, 107, 1) 100%);
+
+
+    background: -o-radial-gradient(circle at 0% 0%, rgba(92, 187, 149, 1) 41%, rgba(5, 56, 107, 1) 100%);
+
+
+    background: -ms-radial-gradient(circle at 0% 0%, rgba(92, 187, 149, 1) 41%, rgba(5, 56, 107, 1) 100%);
+
+
+    background: radial-gradient(circle at 0% 0%, rgba(92, 187, 149, 1) 41%, rgba(5, 56, 107, 1) 100%);
+}
+
+.gradient__bg2 {
+    align-items: flex-end;
+
     background: -moz-radial-gradient(circle at 0% 0%, rgba(92, 187, 149, 1) 41%, rgba(5, 56, 107, 1) 100%);
 
 
@@ -45,7 +70,7 @@ a {
 }
 
 .section__padding {
-    padding: 4rem 6rem;
+    padding: 3rem 4rem;
 }
 
 .section__margin {
@@ -104,3 +129,4 @@ a {
         padding: 4rem 2rem;
     }
 }
+

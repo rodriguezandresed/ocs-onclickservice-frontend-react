@@ -3,8 +3,12 @@ import validate from './validateInfo';
 import useForm from './useForm';
 import './Form.css';
 import { Link } from 'react-router-dom';
+import { Context } from '../../store/appContext';
+import { useContext } from 'react';
 
-const FormSignup = ({ submitForm }) => {
+const FormSignup = ({ submitForm}) => {
+
+  const { actions } = useContext(Context);
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
     validate
@@ -40,9 +44,11 @@ const FormSignup = ({ submitForm }) => {
           />
           {errors.password && <p>{errors.password}</p>}
         </div>
-        <button className='form-input-btn' type='submit'>
+        {/* <Link to="/"> */}
+        <button className='form-input-btn' type='submit' onClick={() => actions.handleLogin(values)}>
           Ingresar
         </button>
+        {/* </Link> */}
         <span className='form-input-login'>
                 ¿No tienes cuenta? Puedes registrarte <Link to="/Register">
                         Aqui
