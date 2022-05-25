@@ -74,7 +74,39 @@
     background-color: #399683;
     color: white;
 }
-.actualizar{
+.actualizar, .status{
     background-color: #04386a;
+    color: white;
+}
+.perfil-servicios{
+    font-size: 24px;
+}
+.perfil-servicios a{
+    color: #04386a;
+    font-weight: bold;
+}
+.orden-servicio{
+    font-size: 20px;
+}
+.orden-proceso{
+    color: rgb(255, 238, 0) !important;
+    font-size: 25px;
+}
+.orden-terminado{
+    color: rgb(21, 255, 0) !important;
+    font-size: 25px;
+}
+.orden-servicios{
+    border-radius: 25px;
+    padding: 10px 20px ;
+    border: 4px solid #04386a;
+    background-color: transparent;
+   font-weight: 200;
+   font-size: 20px;
+   color: white;
+}
+.orden-servicios:hover, .orden-servicios:active, .orden-servicios:link{
+    background-color: #04386a;
+    border: 4px solid #04386a;
     color: white;
 }

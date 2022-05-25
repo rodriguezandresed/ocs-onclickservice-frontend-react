@@ -159,6 +159,12 @@ export const Perfilservicio = () => {
                                             <p>prueba@gmail.com</p>
                                         </div>
                                         <div className="col-5 mt-3">
+                                            <h4>Ciudad</h4>
+                                        </div>
+                                        <div className="col-7 datos-perfil mt-3">
+                                            <p>Distrito Capital</p>
+                                        </div>
+                                        <div className="col-5 mt-3">
                                             <h4>Página web</h4>
                                         </div>
                                         <div className="col-7 datos-perfil mt-3">
@@ -226,10 +232,8 @@ export const Perfilservicio = () => {
                                     </div>
                 
                                     </div>
-                                    <div className="mb-3">
-                                        <label for="exampleFormControlTextarea1" className="form-label"><h4>Agregar Comentarios </h4></label>
-                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    </div>
+                                   
+
                                 </div>
                              </div>
                               

@@ -15,3 +15,13 @@
 .carousel-indicators{
     margin-bottom: 0px;
 }
+
+.enviar-comentario{
+    color:white;
+    background-color: #04386a;
+    font-size: 20px;
+}
+.enviar-comentario:hover, .status:hover {
+    color:#399683;
+
+}

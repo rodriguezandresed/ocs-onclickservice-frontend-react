@@ -2,6 +2,9 @@ import React from 'react'
 import './perfil.css'
 export const Perfil = () => {
 
+    var user = "Cristhian";
+    console.log(user)
+
   return (
     <>
             {/* modal */}
@@ -26,15 +29,54 @@ export const Perfil = () => {
                         <label htmlFor="recipient-email" className="col-form-label">Email</label>
                         <input type="email" className="form-control" id="exampleFormControlInput1"/>
                     </div>
+                    <div className="form-group mb-3">
+                        <label for="exampleFormControlSelect1">Ciudad</label>
+                        <select className="form-control" id="exampleFormControlSelect1">
+                        <option>Distrito Capital</option>
+                        <option>Merida</option>
+                        <option>Miranda</option>
+                        <option>Tachira</option>
+                        <option>Falcon</option>
+                        </select>
+                    </div>
                     <div className="mb-3">
                         <label htmlFor="recipient-pagina-web" className="col-form-label">Página web:</label>
                         <input type="text" className="form-control" id="recipient-pagina-web"/>
+                    </div>
+                    <div className="form-group">
+                        <label for="exampleFormControlFile1">Subir curriculum</label><br />
+                        <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
                     </div>
                     </form>
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" className="btn actualizar">Actualizar</button>
+                </div>
+                </div>
+            </div>
+            </div>
+             {/* modal 2 */}
+             <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                <div className="modal-body px-5">
+                    <div className="text-center my-3">
+                        <i className="fa-solid fa-gear fa-5x my-2"></i>
+                        <h3>Tu servicio sigue en proceso</h3>
+                        
+                        <button type='button' className="mx-2 orden-servicios">Servicio Terminado</button>
+                        <button type='button' className="mx-2 orden-servicios">Servicio Cancelado</button>
+                    </div>
+               <div className="mb-3">
+                    <label for="exampleFormControlTextarea1" className="form-label"><h4>Agregar Comentarios </h4></label>
+                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="button" class="btn enviar-comentario">Enviar</button>
+
+                </div>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
                 </div>
             </div>
@@ -103,11 +145,20 @@ export const Perfil = () => {
                                             <p>prueba@gmail.com</p>
                                         </div>
                                         <div className="col-5 mt-3">
+                                            <h4>Dirección</h4>
+                                        </div>
+                                        <div className="col-7 datos-perfil mt-3">
+                                            <p>Distrito Capital</p>
+                                        </div>
+                                        <div className="col-5 mt-3">
                                             <h4>Página web</h4>
                                         </div>
                                         <div className="col-7 datos-perfil mt-3">
                                             <p>prueba.com</p>
                                         </div>
+
+                                        
+                                        
                                         <div className="col-2">
                                            <button type="button" className='edita-tu-perfil' data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i className="fa-solid fa-pencil fa-2x edit-perfil"></i> </button> 
                                         </div>
@@ -141,11 +192,42 @@ export const Perfil = () => {
                             <div className="accordion-item">
                                 <h2 className="accordion-header" id="flush-headingFour">
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                                <i className="fa-solid fa-user-tie fa-2x mx-2"></i>  Servicios
+                                <i className="fa-solid fa-bell-concierge fa-2x mx-2"></i>  Ordenes de servicios
                                 </button>
                                 </h2>
                                 <div id="flush-collapseFour" className="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                                <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                                <div className="accordion-body orden-servicio">
+                                    <div className="row">
+                                        <div className="col-5">
+                                            <p>Carlos Perez - Carpintero </p> 
+                                        </div>
+                                        <div className="col-4">
+                                            <button type="button" className="btn status" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                            Ver estatus
+                                            </button>
+                                        </div>
+                                        <div className="col-3"></div>
+                                        <div className="col-5">
+                                            <p>Carlos Perez - Carpintero </p> 
+                                        </div>
+                                        <div className="col-4">
+                                            <button type="button" className="btn status" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                            Ver estatus
+                                            </button>
+                                        </div>
+                                        <div className="col-3"></div>
+                                    </div>                               
+                                </div>
+                                </div>
+                            </div>
+                            <div className="accordion-item">
+                                <h2 className="accordion-header" id="flush-headingFive">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                <i className="fa-solid fa-user-tie fa-2x ml-2"></i>  Servicios
+                                </button>
+                                </h2>
+                                <div id="flush-collapseFive" className="accordion-collapse collapse perfil-servicios" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                                <div className="accordion-body">¿Deseas agregar tus sericios? <a href="http://localhost:8000/registerservicio">Click aqui</a></div>
                                 </div>
                             </div>
                             </div>
