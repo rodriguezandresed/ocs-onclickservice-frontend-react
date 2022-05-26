@@ -3,17 +3,21 @@ import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import './navbar.css'
 import logo from '../../../assets/logo.png'
 import { Link } from "react-router-dom";
+import { Context } from "../../store/appContext";
+import { useContext } from "react";
 
 const Menu = () => (
 	<>
 		<p><a href="#home">Home</a></p>
-		<p><a href="#SobreNostros">Conocenos</a></p>
 		<p><a href="#Servicios">Servicios</a></p>
+		<p><a href="#SobreNostros">Conocenos</a></p>
 		<p><a href="#Ayuda">Ayuda</a></p>
 	</>
 )
 
 export const Navbar = () => {
+
+	const { store, actions } = useContext(Context)
 
 	const [toggleMenu, setToggleMenu] = useState(false);
 
@@ -30,31 +34,70 @@ export const Navbar = () => {
 				</div>
 			</div>
 			<div className="ocs__navbar-sign">
-				<Link to="/Login">
-					<p>Ingresar</p>
-				</Link>
-				<Link to="/Register">
-					<button type="button">Registro</button>
-				</Link>
+				{store.token.length != "" ?
+					<>
+						{
+							<>
+								<Link to="/Register">
+									<button type="button">Mi perfil</button>
+								</Link>
+								<button type="button" onClick={actions.handleLogOut}>Logout</button>
+							</>}
+					</>
+					: (<>
+						<Link to="/Login">
+							<p>Ingresar</p>
+						</Link>
+						<Link to="/Register">
+							<button type="button">Registro</button>
+						</Link>
+					</>
+
+					)
+				}
 			</div>
 			<div className="ocs__navbar-menu">
-				{toggleMenu
-					? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
-					: <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />
-				}
-				{toggleMenu && (
-					<div className="ocs__navbar-menu_container scale-up-center">
-						<div className="ocs__navbar-menu_container-links">
-							<Menu />
-							<div className="ocs__navbar-menu_container-links-sign">
-								<p>Sign In</p>
-								<Link to="/Register">
-									<button type="button">Sign Up</button>
-								</Link>
+				{store.token.length == "" ?
+					<>
+						{toggleMenu
+							? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
+							: <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />
+						}
+						{toggleMenu && (
+							<div className="ocs__navbar-menu_container scale-up-center">
+								<div className="ocs__navbar-menu_container-links">
+									<Menu />
+									<div className="ocs__navbar-menu_container-links-sign">
+										<p>Sign In</p>
+										<Link to="/Register">
+											<button type="button">Sign Up</button>
+										</Link>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-				)}
+						)}
+					</> :
+					<>
+						{toggleMenu
+							? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
+							: <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />
+						}
+						{toggleMenu && (
+							<div className="ocs__navbar-menu_container scale-up-center">
+								<div className="ocs__navbar-menu_container-links">
+									<Menu />
+									<div className="ocs__navbar-menu_container-links-sign">
+										<Link to="/Register">
+											<button type="button">Mi Perfil</button>
+										</Link>
+										<button onClick={actions.handleLogOut}>
+											Log Out
+										</button>
+									</div>
+								</div>
+							</div>
+						)}
+					</>}
 			</div>
 		</div>
 	);

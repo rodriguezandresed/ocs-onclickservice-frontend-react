@@ -116,5 +116,44 @@
   }
 
   .card {
-      background-color: #8ee4af;
+      /* ff 3.6+ */
+    background:-moz-radial-gradient(circle at 0% 0%, rgba(92, 219, 149, 1) 0%, rgba(237, 245, 225, 1) 100%);
+
+    /* safari 5.1+,chrome 10+ */
+    background:-webkit-radial-gradient(circle at 0% 0%, rgba(92, 219, 149, 1) 0%, rgba(237, 245, 225, 1) 100%);
+
+    /* opera 11.10+ */
+    background:-o-radial-gradient(circle at 0% 0%, rgba(92, 219, 149, 1) 0%, rgba(237, 245, 225, 1) 100%);
+
+    /* ie 10+ */
+    background:-ms-radial-gradient(circle at 0% 0%, rgba(92, 219, 149, 1) 0%, rgba(237, 245, 225, 1) 100%);
+
+    /* global 92%+ browsers support */
+    background:radial-gradient(circle at 0% 0%, rgba(92, 219, 149, 1) 0%, rgba(237, 245, 225, 1) 100%);
   }
+
+  .card-body {
+      height: 134px;
+      width: 261px;
+  }
+
+@media (min-width: 1100px) and (max-width: 1500px){
+.card-body {
+    width: 200px;
+    padding: 15px;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1199px){
+.card-body {
+    padding: 15px;
+    height: 90px;
+    
+}}
+
+@media (min-width: 460px) and (max-width: 1199px){
+    .card-body {
+        padding: 15px;
+        height: 90px;
+    }
+}

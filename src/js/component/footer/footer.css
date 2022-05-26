@@ -1,0 +1,14 @@
+.brand, 
+.nav{
+    color: rgb(255, 255, 255);
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 100px;
+}

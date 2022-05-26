@@ -6,18 +6,18 @@ import { Home } from "./views/home";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar/navbar.jsx";
-import  Register from "./component/register/register.jsx";
-import  Login  from "./component/login/login.jsx";
 import { Perfil } from "./component/perfil/perfil.jsx";
-import { Footer } from "./component/footer";
 import { Registerservicio } from "./component/registerservicio/registerservicio.jsx";
 import { Perfilservicio } from "./component/perfilservicio/perfilservicio.jsx";
-
-import "../styles/gradients.css"
-import "../styles/index.css"
 import "./component/perfil/perfil.css"
 import "./component/registerservicio/registerservicio.css"
 import "./component/perfilservicio/perfilservicio.css"
+import Login from "./component/login/login.jsx"
+import Proveedores from "./component/proveedores/Proveedores.jsx";
+import Footer from "./component/footer/Footer.jsx";
+import "../styles/gradients.css"
+import "../styles/index.css"
+import FormSignup from "./component/register/FormSignup";
 
 //create your first component
 const Layout = () => {
@@ -33,16 +33,19 @@ const Layout = () => {
 					</div>
 						<Routes>
 							<Route path="/" element={<Home />}/>
-							<Route path="/Register" element={<Register />}/>
-							<Route path="/Login" element={<Login />}/>
-							<Route path="/Perfil" element={<Perfil />}/>
-							<Route path="/Registerservicio" element={<Registerservicio />}/>
-							<Route path="/Perfilservicio" element={<Perfilservicio />}/>
-
+							<Route path="/perfil" element={<Perfil />}/>
+							<Route path="/registerservicio" element={<Registerservicio />}/>
+							<Route path="/perfilservicio" element={<Perfilservicio />}/>
+							<Route path="/register" element={<FormSignup />}/>
+							<Route path="/login" element={<Login />}/>
+							<Route path="/proveedores/:categoria" element={<Proveedores />}/>
 						</Routes>
-					<Footer />
-				</ScrollToTop>
+					<footer className="gradient__bg2">
+						<Footer />
+					</footer>
+				</ScrollToTop>	
 			</BrowserRouter>
+
 	);
 };
 
