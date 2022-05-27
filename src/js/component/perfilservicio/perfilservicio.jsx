@@ -6,7 +6,7 @@ export const Perfilservicio = () => {
     <>
             {/* modal */}
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog">
+            <div className="modal-dialog modal-dialog-scrollable">
                 <div className="modal-content">
                 <div className="modal-header">
                     <h2 className="modal-title" id="exampleModalLabel">Información del servicio</h2>
@@ -77,7 +77,7 @@ export const Perfilservicio = () => {
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" className="btn actualizar">Actualizar</button>
+                    <button type="button" className="btn actualizar">Solicitar servicio</button>
                 </div>
                 </div>
             </div>
@@ -179,12 +179,12 @@ export const Perfilservicio = () => {
                                 </div>
                             </div>
                             <div className="accordion-item">
-                                <h2 className="accordion-header" id="flush-headingFour">
-                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                <h2 className="accordion-header" id="flush-headingTow">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTow" aria-expanded="false" aria-controls="flush-collapseTow">
                                 <i className="fa-solid fa-user-tie fa-2x mx-2"></i>  Servicios
                                 </button>
                                 </h2>
-                                <div id="flush-collapseFour" className="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                <div id="flush-collapseTow" className="accordion-collapse collapse" aria-labelledby="flush-headingTow" data-bs-parent="#accordionFlushExample">
                                 <div className="accordion-body list-servicios">
                                    <p><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Plomeria</a></p> 
                                    <p><a href="#">Electricidad</a></p> 
@@ -193,22 +193,22 @@ export const Perfilservicio = () => {
                                 </div>
                             </div>
                             <div className="accordion-item">
-                                <h2 className="accordion-header" id="flush-headingTwo">
-                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                <h2 className="accordion-header" id="flush-headingThree">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                                 <i className="fa-solid fa-shield-halved fa-2x mx-2"></i> Seguridad
                                 </button>
                                 </h2>
-                                <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div id="flush-collapseThree" className="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                                 <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
                                 </div>
                             </div>
                             <div className="accordion-item">
-                                <h2 className="accordion-header" id="flush-headingThree">
-                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                <h2 className="accordion-header" id="flush-headingFive">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
                                 <i className="fa-solid fa-comments fa-2x mx-2"></i>  Comentarios
                                 </button>
                                 </h2>
-                                <div id="flush-collapseThree" className="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div id="flush-collapseFive" className="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
                                 <div className="accordion-body">
                                 <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="true">
                                     <div className="carousel-indicators">

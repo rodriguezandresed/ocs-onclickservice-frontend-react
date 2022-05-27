@@ -25,3 +25,9 @@
     color:#399683;
 
 }
+.modal-dialog{
+    height: 90vh;
+}
+.actualizar:hover{
+    color: white;
+}

@@ -170,6 +170,35 @@ export const Perfil = () => {
                                 </div>
                             </div>
                             <div className="accordion-item">
+                                <h2 className="accordion-header" id="flush-headingFive">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                <i className="fa-solid fa-briefcase fa-2x mx-2"></i> Servicios solicitados
+                                </button>
+                                </h2>
+                                <div id="flush-collapseFive" className="accordion-collapse collapse" aria-labelledby="flush-headingFiver" data-bs-parent="#accordionFlushExample">
+                                <div className="accordion-body orden-servicio">
+                                <div className="row">
+                                        <div className="col-5 my-3">
+                                            <p>Carlos Perez - Carpinteria</p> 
+                                        </div>
+                                        <div className="col-4 my-2">
+                                        <i className="fa-solid fa-spinner fa-2x"></i>
+                                        </div>
+                                        <div className="col-3 my-2"></div>
+                                        <div className="col-5 my-3">
+                                            <p>Maria Fernanda - Reposteria </p> 
+                                        </div>
+                                        <div className="col-4 my-2">
+                                        <i className="fa-solid fa-circle-check fa-2x"></i>
+                                        </div>
+                                        <div className="col-3 my-2">
+                                        <button type="button" class="btn-close mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                    </div>                     
+                                </div>
+                                </div>
+                            </div>
+                            <div className="accordion-item">
                                 <h2 className="accordion-header" id="flush-headingTwo">
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                                 <i className="fa-solid fa-shield-halved fa-2x mx-2"></i> Seguridad
@@ -220,13 +249,14 @@ export const Perfil = () => {
                                 </div>
                                 </div>
                             </div>
+                           
                             <div className="accordion-item">
-                                <h2 className="accordion-header" id="flush-headingFive">
-                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                <h2 className="accordion-header" id="flush-headingSix">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
                                 <i className="fa-solid fa-user-tie fa-2x ml-2"></i>  Servicios
                                 </button>
                                 </h2>
-                                <div id="flush-collapseFive" className="accordion-collapse collapse perfil-servicios" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                                <div id="flush-collapseSix" className="accordion-collapse collapse perfil-servicios" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
                                 <div className="accordion-body">¿Deseas agregar tus sericios? <a href="http://localhost:8000/registerservicio">Click aqui</a></div>
                                 </div>
                             </div>
