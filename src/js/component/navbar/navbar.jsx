@@ -36,8 +36,61 @@ export const Navbar = () => {
 			<div className="ocs__navbar-sign">
 				{store.token.length != "" ?
 					<>
+					
 						{
 							<>
+
+           <li className="nav-item dropdown ">
+              <a className="nav-link dropdown-toggle bg-primary text-light rounded" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Pedidos Pendientes <span className="favorite-text bg-secondary">({store.pedidos.length})</span>
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                {store.pedidos.length <= 0 ? "empty" :
+
+                  store.pedidos.map((item) => {
+                    return (
+
+
+                      <li key={item.id} className="ms-2 d-flex">   <span>{"Proveedor " + item.proveedor.nombre + "  " +  "Cliente " +  item.cliente.nombre}</span> </li>
+                    )
+                  })
+
+                }
+
+
+
+              </ul>
+            </li>
+
+
+			<li className="nav-item dropdown ">
+              <a className="nav-link dropdown-toggle bg-primary text-light rounded" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Contratos Pendientes <span className="favorite-text bg-secondary">({store.contratos.length})</span>
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                {store.contratos.length <= 0 ? "empty" :
+
+                  store.contratos.map((item) => {
+                    return (
+
+
+                      <li key={item.id} className="ms-2 d-flex">   <span>{"Proveedor " + item.proveedor.nombre + "  " +  "Cliente " +  item.cliente.nombre}</span> </li>
+                    )
+                  })
+
+                }
+
+
+
+              </ul>
+            </li>
+
+
+							
+								<button type="button" onClick={()=> actions.handleGetPedidos()}>Verifica tus Pedidos Pendientes!</button>
+								<button type="button" onClick={()=> actions.handleGetContratos()}>Verifica tus Contratos Pendientes!</button>
 								<Link to="/perfil">
 									<button type="button">Mi perfil</button>
 								</Link>
