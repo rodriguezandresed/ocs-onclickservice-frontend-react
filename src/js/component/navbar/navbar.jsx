@@ -43,16 +43,16 @@ export const Navbar = () => {
 								</Link>
 								<button type="button" onClick={actions.handleLogOut}>
 								<Link to="/">
-											Log Out
-										</Link>
-									</button>
+									Logout
+								</Link>
+								</button>
 							</>}
 					</>
 					: (<>
-						<Link to="/login">
+						<Link to="/Login">
 							<p>Ingresar</p>
 						</Link>
-						<Link to="/register">
+						<Link to="/Register">
 							<button type="button">Registro</button>
 						</Link>
 					</>
@@ -72,10 +72,10 @@ export const Navbar = () => {
 								<div className="ocs__navbar-menu_container-links">
 									<Menu />
 									<div className="ocs__navbar-menu_container-links-sign">
-										<Link to="/login">
+										<Link to="/Login">
 											<p>Ingresar</p>
 										</Link>
-										<Link to="/register">
+										<Link to="/Register">
 											<button type="button">Registro</button>
 										</Link>
 									</div>
@@ -93,12 +93,12 @@ export const Navbar = () => {
 								<div className="ocs__navbar-menu_container-links">
 									<Menu />
 									<div className="ocs__navbar-menu_container-links-sign">
-										<Link to="/perfil">
+										<Link to="/Register">
 											<button type="button">Mi Perfil</button>
 										</Link>
 										<button onClick={actions.handleLogOut}>
 										<Link to="/">
-											Log Out
+											Logout
 										</Link>
 										</button>
 									</div>

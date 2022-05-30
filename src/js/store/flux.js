@@ -7,7 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			servicios: [],
 			proveedores: [],
 			usuario: [],
-			detalles: []
+			detalles: [],
+			pedidos: JSON.parse(localStorage.getItem("pedidos")) || [],
+			contratos: JSON.parse(localStorage.getItem("contratos")) || []
 		},
 		actions: {
 			handleRegister: async (values) => {
@@ -48,12 +50,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let data = await response.json()
 				if (response.ok) {
 
-					
+
 					setStore({
 						...store, token: data.token
 					});
 					localStorage.setItem("token", data.token);
-					
+
 
 				}
 			},
@@ -133,7 +135,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				catch (error) {
 					console.log(error)
 				}
-			}, 
+			},
 
 			getDetalles: async (proveedor) => {
 				let store = getStore();
@@ -147,40 +149,84 @@ const getState = ({ getStore, getActions, setStore }) => {
 							...store, detalles: data
 						})
 					}
-					
+
 				}
-				catch(error){
+				catch (error) {
 					console.log(error)
 				}
-					
+
 			},
 
 			getProfile: async () => {
 				let store = getStore();
-				try{const response = await fetch(`${store.URL_BASE}/profile`, {
+				try {
+					const response = await fetch(`${store.URL_BASE}/profile`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
+						},
+						body: JSON.stringify()
+					})
+					let data = await response.json()
+					console.log(data, "hola q tal")
+					if (response.ok) {
+
+						setStore({
+							...store, usuario: data
+						})
+					}
+				}
+
+				catch (error) {
+					console.log(error)
+				};
+
+			},
+
+			handleGetPedidos: async () => {
+				let store = getStore();
+				const response = await fetch("http://127.0.0.1:3000/pedidos_pendientes", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
 						"Authorization": `Bearer ${store.token}`
-					},
-					body: JSON.stringify()
+					}
 				})
 				let data = await response.json()
-				console.log(data, "hola q tal")
+				console.log(data)
+
 				if (response.ok) {
-
 					setStore({
-						...store, usuario: data
-					})}}
-					
-				catch(error){
-					console.log(error)
-				};
-
+						...store, pedidos: data
+					});
+					localStorage.setItem("pedidos", JSON.stringify(getStore().pedidos));
 				}
+			},
+			
+			handleGetContratos: async () => {
+				let store = getStore();
+				const response = await fetch ("http://127.0.0.1:3000/contratos_pendientes", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${store.token}`
+					}
+					})
+					let data = await response.json()
+					console.log(data)
+					
+					if (response.ok){
+						setStore({
+							...store, contratos:data 
+						});
+						localStorage.setItem("contratos", JSON.stringify(getStore().contratos));
+					}
 			}
+
 		}
-	};
+	}
+};
 ;
 
 export default getState;
