@@ -5,7 +5,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: localStorage.getItem("token") || "",
 			endPoints: ["servicios", "proveedores"],
 			servicios: [],
-			proveedores: []
+			proveedores: [],
+			usuario: [],
+			detalles: []
 		},
 		actions: {
 			handleRegister: async (values) => {
@@ -35,6 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			handleLogin: async (login) => {
 				let store = getStore();
+				let actions = getActions();
 				const response = await fetch(`${store.URL_BASE}/login`, {
 					method: "POST",
 					headers: {
@@ -45,10 +48,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let data = await response.json()
 				if (response.ok) {
 
+					
 					setStore({
 						...store, token: data.token
 					});
 					localStorage.setItem("token", data.token);
+					
 
 				}
 			},
@@ -128,9 +133,54 @@ const getState = ({ getStore, getActions, setStore }) => {
 				catch (error) {
 					console.log(error)
 				}
+			}, 
+
+			getDetalles: async (proveedor) => {
+				let store = getStore();
+				try {
+					let response = await fetch(`${store.URL_BASE}/user/${proveedor}`)
+					let data = await response.json();
+					console.log(data, "soy el detalle");
+
+					if (response.ok) {
+						setStore({
+							...store, detalles: data
+						})
+					}
+					
+				}
+				catch(error){
+					console.log(error)
+				}
+					
+			},
+
+			getProfile: async () => {
+				let store = getStore();
+				try{const response = await fetch(`${store.URL_BASE}/profile`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${store.token}`
+					},
+					body: JSON.stringify()
+				})
+				let data = await response.json()
+				console.log(data, "hola q tal")
+				if (response.ok) {
+
+					setStore({
+						...store, usuario: data
+					})}}
+					
+				catch(error){
+					console.log(error)
+				};
+
+				}
 			}
 		}
 	};
-};
+;
 
 export default getState;

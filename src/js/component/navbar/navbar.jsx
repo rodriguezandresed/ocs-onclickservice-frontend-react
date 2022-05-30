@@ -41,7 +41,11 @@ export const Navbar = () => {
 								<Link to="/perfil">
 									<button type="button">Mi perfil</button>
 								</Link>
-								<button type="button" onClick={actions.handleLogOut}>Logout</button>
+								<button type="button" onClick={actions.handleLogOut}>
+								<Link to="/">
+											Log Out
+										</Link>
+									</button>
 							</>}
 					</>
 					: (<>
@@ -93,7 +97,9 @@ export const Navbar = () => {
 											<button type="button">Mi Perfil</button>
 										</Link>
 										<button onClick={actions.handleLogOut}>
+										<Link to="/">
 											Log Out
+										</Link>
 										</button>
 									</div>
 								</div>

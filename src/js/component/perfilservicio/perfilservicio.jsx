@@ -13,22 +13,25 @@ export const Perfilservicio = () => {
     
     const [info, setInfo] = useState({});
 
-    const getDetails = () => {
-        let detail = store["proveedores"].find((item) => {
-            return item.id == id
-        })
-        // if (detail) {
-        //     console.log(detail)
-        //     console.log(item)
-        //     setInfo(detail)
-        // }
-        console.log(detail, "hola q tal")
-    }
+    console.log(params)
+
+
+    // const getDetails = () => {
+    //     let detail = store["proveedores"].find((item) => {
+    //         return item.proveedor.id == id
+    //     })
+    //     // if (detail) {
+    //     //     console.log(detail)
+    //     //     console.log(item)
+    //     //     setInfo(detail)
+    //     // }
+    //     console.log(detail, "hola q tal")
+    // }
     // console.log(info)
     // console.log(params)
 
     useEffect(() => {
-        getDetails()
+        actions.getDetalles(params.id)
     }, [])
 
     return (
@@ -133,8 +136,8 @@ export const Perfilservicio = () => {
 
                             </div>
                             <div className="col-7 date-perfil pt-4">
-                                <h2>Maria Fernanda</h2>
-                                <h3>mariafernanda24</h3>
+                                <h2>{store.detalles.nombre}</h2>
+                                <h3>{store.detalles.email}</h3>
                             </div>
                         </div>
                     </div>
