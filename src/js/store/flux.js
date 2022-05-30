@@ -169,7 +169,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify()
 					})
 					let data = await response.json()
-					console.log(data, "hola q tal")
+					
 					if (response.ok) {
 
 						setStore({
