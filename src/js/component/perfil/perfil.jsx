@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {useContext, useEffect, useState } from 'react'
 import './perfil.css'
+import { Context } from '../../store/appContext';
+
 export const Perfil = () => {
 
     var user = "Cristhian";
     console.log(user)
+    const { store} = useContext(Context)
+
 
   return (
     <>
@@ -72,7 +76,7 @@ export const Perfil = () => {
                     <label for="exampleFormControlTextarea1" className="form-label"><h4>Agregar Comentarios </h4></label>
                     <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
-                <button type="button" class="btn enviar-comentario">Enviar</button>
+                <button type="button" className="btn enviar-comentario">Enviar</button>
 
                 </div>
                 <div className="modal-footer">
@@ -192,7 +196,7 @@ export const Perfil = () => {
                                         <i className="fa-solid fa-circle-check fa-2x"></i>
                                         </div>
                                         <div className="col-3 my-2">
-                                        <button type="button" class="btn-close mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" className="btn-close mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                     </div>                     
                                 </div>
@@ -257,7 +261,18 @@ export const Perfil = () => {
                                 </button>
                                 </h2>
                                 <div id="flush-collapseSix" className="accordion-collapse collapse perfil-servicios" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
-                                <div className="accordion-body">¿Deseas agregar tus sericios? <a href="http://localhost:8000/registerservicio">Click aqui</a></div>
+                               {store.servicio < 0 ? 
+                               <>
+                               <div className="accordion-body">¿Deseas agregar tus sericios? {store.id} <a href="http://localhost:8000/registerservicio">Click aqui</a></div>
+                               </> :
+                               (
+                                <>
+                                <h1>hola que tal</h1>
+                                </>
+                               )
+                            
+                                }
+                                
                                 </div>
                             </div>
                             </div>

@@ -17,7 +17,7 @@ const FormSignup = () => {
     }
 
     const { actions } = useContext(Context);
-
+    
     const [values, setValues] = useState(initialState);
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);

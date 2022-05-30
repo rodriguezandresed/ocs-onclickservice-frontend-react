@@ -32,6 +32,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			},
+			handleRegisterServicio: async (values) => {
+				let store = getStore();
+				console.log(values);
+				let actions = getActions();
+				try {
+					const response = await fetch(`${store.URL_BASE}/agregar`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`,
+						},
+						body: JSON.stringify(values)
+					})
+
+					if (response.ok) {
+
+						setStore({
+							...store, servicios:[...servicios,data]
+						});
+
+					}
+				}
+				catch (error) {
+					console.log(error);
+				}
+
+			}
+			,
 
 			handleLogin: async (login) => {
 				let store = getStore();
