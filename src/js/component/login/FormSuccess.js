@@ -6,9 +6,7 @@ const FormSuccess = () => {
   return (
     <div className='form-content-right'>
       <h1 className='form-success'>
-        <Link to="/">
-        Entrando a tu cuenta
-        </Link>
+        Has ingresado con exito. Puedes ingresar a tu cuenta <Link to="/perfil"> Aqui</Link>
         </h1>
     </div>
   );

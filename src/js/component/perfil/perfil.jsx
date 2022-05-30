@@ -1,14 +1,22 @@
-import React from 'react'
-import './perfil.css'
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { Context } from '../../store/appContext';
+import './perfil.css';
 export const Perfil = () => {
 
-    var user = "Cristhian";
-    console.log(user)
+    // var user = "Cristhian";
+    // console.log(user)
+    const { store, actions } = useContext(Context);
+
+
+    useEffect(() => {
+        actions.getProfile()
+    }, [])
 
   return (
     <>
             {/* modal */}
-            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                 <div className="modal-header">
@@ -18,19 +26,19 @@ export const Perfil = () => {
                 <div className="modal-body">
                     <form>
                     <div className="mb-3">
-                        <label htmlFor="recipient-name" className="col-form-label">Nombre y apellido:</label>
+                        <label className="col-form-label">Nombre y apellido:</label>
                         <input type="text" className="form-control" id="recipient-name"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="recipient-user" className="col-form-label">Usuario:</label>
+                        <label className="col-form-label">Usuario:</label>
                         <input type="text" className="form-control" id="recipient-user"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="recipient-email" className="col-form-label">Email</label>
+                        <label className="col-form-label">Email</label>
                         <input type="email" className="form-control" id="exampleFormControlInput1"/>
                     </div>
                     <div className="form-group mb-3">
-                        <label for="exampleFormControlSelect1">Ciudad</label>
+                        <label>Ciudad</label>
                         <select className="form-control" id="exampleFormControlSelect1">
                         <option>Distrito Capital</option>
                         <option>Merida</option>
@@ -40,11 +48,11 @@ export const Perfil = () => {
                         </select>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="recipient-pagina-web" className="col-form-label">Página web:</label>
+                        <label className="col-form-label">Página web:</label>
                         <input type="text" className="form-control" id="recipient-pagina-web"/>
                     </div>
                     <div className="form-group">
-                        <label for="exampleFormControlFile1">Subir curriculum</label><br />
+                        <label>Subir curriculum</label><br />
                         <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
                     </div>
                     </form>
@@ -57,7 +65,7 @@ export const Perfil = () => {
             </div>
             </div>
              {/* modal 2 */}
-             <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                 <div className="modal-body px-5">
@@ -69,10 +77,10 @@ export const Perfil = () => {
                         <button type='button' className="mx-2 orden-servicios">Servicio Cancelado</button>
                     </div>
                <div className="mb-3">
-                    <label for="exampleFormControlTextarea1" className="form-label"><h4>Agregar Comentarios </h4></label>
+                    <label className="form-label"><h4>Agregar Comentarios </h4></label>
                     <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
-                <button type="button" class="btn enviar-comentario">Enviar</button>
+                <button type="button" className="btn enviar-comentario">Enviar</button>
 
                 </div>
                 <div className="modal-footer">
@@ -96,8 +104,8 @@ export const Perfil = () => {
                             
                         </div>
                         <div className="col-7 date-perfil pt-4">
-                            <h2>Maria Fernanda</h2>
-                            <h3>mariafernanda24</h3>
+                            <h2>{store.usuario.nombre}</h2>
+                            <h3>{store.usuario.email}</h3>
                         </div>
                     </div>
                 </div>
