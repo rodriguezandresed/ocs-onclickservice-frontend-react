@@ -38,10 +38,14 @@ export const Navbar = () => {
 					<>
 						{
 							<>
-								<Link to="/Register">
+								<Link to="/perfil">
 									<button type="button">Mi perfil</button>
 								</Link>
-								<button type="button" onClick={actions.handleLogOut}>Logout</button>
+								<button type="button" onClick={actions.handleLogOut}>
+								<Link to="/">
+									Logout
+								</Link>
+								</button>
 							</>}
 					</>
 					: (<>
@@ -68,9 +72,11 @@ export const Navbar = () => {
 								<div className="ocs__navbar-menu_container-links">
 									<Menu />
 									<div className="ocs__navbar-menu_container-links-sign">
-										<p>Sign In</p>
+										<Link to="/Login">
+											<p>Ingresar</p>
+										</Link>
 										<Link to="/Register">
-											<button type="button">Sign Up</button>
+											<button type="button">Registro</button>
 										</Link>
 									</div>
 								</div>
@@ -91,7 +97,9 @@ export const Navbar = () => {
 											<button type="button">Mi Perfil</button>
 										</Link>
 										<button onClick={actions.handleLogOut}>
-											Log Out
+										<Link to="/">
+											Logout
+										</Link>
 										</button>
 									</div>
 								</div>

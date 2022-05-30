@@ -11,6 +11,9 @@
     text-align: center;
     overflow: hidden;
     position: relative;
+    border: #05386B;
+    border-style: solid;
+    border-radius: 15px;
   }
   
   .our-team .picture {

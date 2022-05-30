@@ -18,6 +18,7 @@ import Footer from "./component/footer/Footer.jsx";
 import "../styles/gradients.css"
 import "../styles/index.css"
 import FormSignup from "./component/register/FormSignup";
+import Rate from "./component/rate/Rate.jsx";
 
 //create your first component
 const Layout = () => {
@@ -38,7 +39,10 @@ const Layout = () => {
 							<Route path="/perfilservicio" element={<Perfilservicio />}/>
 							<Route path="/register" element={<FormSignup />}/>
 							<Route path="/login" element={<Login />}/>
+							<Route path="/rate" element={<Rate />}/>
 							<Route path="/proveedores/:categoria" element={<Proveedores />}/>
+							<Route path="/proveedores/profile/:id" element={<Perfilservicio />}/>
+							<Route path="*" element={<h1>Not found!</h1>}/>
 						</Routes>
 					<footer className="gradient__bg2">
 						<Footer />

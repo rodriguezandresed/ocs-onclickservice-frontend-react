@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import "./proveedores.css"
 import { faker } from '@faker-js/faker'
 import { Context } from '../../store/appContext';
+import { Link } from 'react-router-dom';
 
 const Proveedores = () => {
     const param = useParams();
@@ -38,7 +39,7 @@ const Proveedores = () => {
             </div>
             <ul className="social">
               <li>
-                Ver Perfil
+                <Link to={`/proveedores/profile/${item.proveedor.id}`}>Ver Perfil</Link>
               </li>
             </ul>
           </div>
