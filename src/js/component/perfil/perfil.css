@@ -15,10 +15,10 @@
     padding: 0;
     border-radius: 15px 15px 0px 0px;
 }
-.foto-perfil{
+.foto-perfil img{
     height: 200px;
     width: 200px;
-    background-image: url("https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    /* background-image: url("https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position:center;
@@ -27,7 +27,7 @@
     margin-top: -100px;
 }
 .date-perfil{
-    padding-left: 50px;
+    padding-left: 0px;
 }
 .accordion-item{
     padding: 10px;

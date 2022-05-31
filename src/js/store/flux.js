@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URL_BASE: "https://3000-rafmanrique-onclickserv-hxvbcv93zfu.ws-us46.gitpod.io",
+			URL_BASE: "http://127.0.0.1:3000",
 			token: localStorage.getItem("token") || "",
 			endPoints: ["servicios", "proveedores"],
 			servicios: [],
@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			handleRegister: async (values) => {
 				let store = getStore();
-				console.log(values);
+				console.log(values, "hola epa");
 				let actions = getActions();
 				try {
 					const response = await fetch(`${store.URL_BASE}/user`, {
@@ -296,7 +296,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Se edito la orden")
 				}
 
+			},
+
+			updateProfile: async (profileData) => {
+				let store = getStore();
+				console.log(profileData, "hola epa");
+				let id = store.usuario.id
+				
+				try {
+					const response = await fetch(`${store.URL_BASE}/user/${id}`, {
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(profileData)
+					})
+					let data = await response.json();
+					console.log(data, "he cambiado el perfil");
+
+				}
+				catch (error) {
+					console.log(error)
+				}
+				
 			}
+
+			// handleRegister: async (values) => {
+			// 	let store = getStore();
+			// 	console.log(values);
+			// 	let actions = getActions();
+			// 	try {
+			// 		const response = await fetch(`${store.URL_BASE}/user`, {
+			// 			method: "POST",
+			// 			headers: {
+			// 				"Content-Type": "application/json"
+			// 			},
+			// 			body: JSON.stringify(values)
+			// 		})
+
+			// 		if (response.ok) {
+
+			// 			actions.handleLogin(values)
+
+			// 		}
+			// 	}
+			// 	catch (error) {
+			// 		console.log(error);
+			// 	}
+
+			// },
 
 	}
 	}

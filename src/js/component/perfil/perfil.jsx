@@ -5,9 +5,25 @@ import "./perfil.css";
 export const Perfil = () => {
   // var user = "Cristhian";
   // console.log(user)
+  let initialState = {
+    nombre: "",
+    email: "",
+    direccion: "",
+    telefono: ""
+}
+  
   const { store, actions } = useContext(Context);
 
   const [modalData, setModalData] = useState([]);
+
+  const [profileData, setProfileData] = useState(initialState);
+
+  const handleChange = event => {
+
+    setProfileData({
+        ...profileData, [event.target.name]: event.target.value
+    });
+};
 
 
   useEffect(() => {
@@ -45,14 +61,9 @@ export const Perfil = () => {
                     type="text"
                     className="form-control"
                     id="recipient-name"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="col-form-label">Usuario:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="recipient-user"
+                    name="nombre"
+                    value={profileData.nombre}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -61,27 +72,31 @@ export const Perfil = () => {
                     type="email"
                     className="form-control"
                     id="exampleFormControlInput1"
+                    name="email"
+                    value={profileData.email}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group mb-3">
-                  <label>Ciudad</label>
-                  <select
+                  <label>Ciudad/Estado</label>
+                  <input
                     className="form-control"
                     id="exampleFormControlSelect1"
+                    name="direccion"
+                    value={profileData.direccion}
+                    onChange={handleChange}
                   >
-                    <option>Distrito Capital</option>
-                    <option>Merida</option>
-                    <option>Miranda</option>
-                    <option>Tachira</option>
-                    <option>Falcon</option>
-                  </select>
+                  </input>
                 </div>
                 <div className="mb-3">
-                  <label className="col-form-label">Página web:</label>
+                  <label className="col-form-label">Telefono</label>
                   <input
                     type="text"
                     className="form-control"
                     id="recipient-pagina-web"
+                    name="telefono"
+                    value={profileData.telefono}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
@@ -103,7 +118,8 @@ export const Perfil = () => {
               >
                 Cerrar
               </button>
-              <button type="button" className="btn actualizar">
+              <button type="button" className="btn actualizar" 
+              onClick={() => actions.updateProfile(profileData)}>
                 Actualizar
               </button>
             </div>
@@ -210,7 +226,9 @@ export const Perfil = () => {
           <div className="col-12 col-md-8 box-perfil px-0 pt-0 ">
             <div className="fondo-perfil"></div>
             <div className="row d-flex align-items-center px-5 pb-3">
-              <div className="col-5 foto-perfil"></div>
+              <div className="col-5 foto-perfil">
+                  <img src={store.usuario.imagen}/>
+              </div>
               <div className="col-7 date-perfil pt-4">
                 <h2>{store.usuario.nombre}</h2>
                 <h3>{store.usuario.email}</h3>
@@ -247,40 +265,28 @@ export const Perfil = () => {
                   <div className="accordion-body">
                     <div className="row">
                       <div className="col-5 mt-3">
-                        <h4>Usuario</h4>
-                      </div>
-                      <div className="col-7 datos-perfil mt-3">
-                        <p>CristhianCotte</p>
-                      </div>
-                      <div className="col-5 mt-3">
                         <h4>Nombre y apellido</h4>
                       </div>
                       <div className="col-7 datos-perfil mt-3">
-                        <p>Cristhian Cotte</p>
+                        <p>{store.usuario.nombre}</p>
                       </div>
                       <div className="col-5 mt-3">
                         <h4>Correo</h4>
                       </div>
                       <div className="col-7 datos-perfil mt-3">
-                        <p>prueba@gmail.com</p>
+                        <p>{store.usuario.email}</p>
                       </div>
                       <div className="col-5 mt-3">
-                        <h4>Redes sociales</h4>
+                        <h4>Ciudad/Estado</h4>
                       </div>
                       <div className="col-7 datos-perfil mt-3">
-                        <p>prueba@gmail.com</p>
+                        <p>{store.usuario.direccion}</p>
                       </div>
                       <div className="col-5 mt-3">
-                        <h4>Dirección</h4>
+                        <h4>Telefono</h4>
                       </div>
                       <div className="col-7 datos-perfil mt-3">
-                        <p>Distrito Capital</p>
-                      </div>
-                      <div className="col-5 mt-3">
-                        <h4>Página web</h4>
-                      </div>
-                      <div className="col-7 datos-perfil mt-3">
-                        <p>prueba.com</p>
+                        <p>{store.usuario.telefono}</p>
                       </div>
 
                       <div className="col-2">
@@ -320,8 +326,8 @@ export const Perfil = () => {
                 >
                   <div className="accordion-body orden-servicio">
                     <div className="row d-flex justify-content-center ">
-                    {store.contratos.length <= 0
-                          ? "empty"
+                    {store.contratos.length == ""
+                          ? "No tienes servicios solicitados"
                           : store.contratos.map((item) => {
                               return (
                                   <>
@@ -438,8 +444,8 @@ export const Perfil = () => {
                   <div className="accordion-body orden-servicio">
                     <div className="row d-flex justify-content-center ">
                       
-                      {store.pedidos.length <= 0
-                          ? "empty"
+                      {store.pedidos.length == ""
+                          ? "No tienes ordenes de servicio"
                           : store.pedidos.map((item) => {
                               return (
                                   <>

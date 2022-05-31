@@ -8,7 +8,7 @@ import { useContext } from "react";
 
 const Menu = () => (
 	<>
-		<p><a href="#home">Home</a></p>
+		<p><Link to="/"><a href="#home">Home</a></Link></p>
 		<p><a href="#Servicios">Servicios</a></p>
 		<p><a href="#SobreNostros">Conocenos</a></p>
 		<p><a href="#Ayuda">Ayuda</a></p>
