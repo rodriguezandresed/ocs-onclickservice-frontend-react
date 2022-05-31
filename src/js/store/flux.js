@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			proveedores: [],
 			usuario: [],
 			detalles: [],
+			contratar:[],
 			pedidos: JSON.parse(localStorage.getItem("pedidos")) || [],
 			contratos: JSON.parse(localStorage.getItem("contratos")) || []
 		},
@@ -83,7 +84,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						...store, token: data.token
 					});
 					localStorage.setItem("token", data.token);
-
+					actions.handleGetPedidos();
+					actions.handleGetContratos();
 
 				}
 			},
@@ -166,7 +168,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getDetalles: async (proveedor) => {
+				let actions = getActions()
 				let store = getStore();
+				actions.handleGetPedidos();
+				actions.handleGetContratos();
 				try {
 					let response = await fetch(`${store.URL_BASE}/user/${proveedor}`)
 					let data = await response.json();
@@ -186,7 +191,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getProfile: async () => {
+				let actions = getActions()
 				let store = getStore();
+				actions.handleGetPedidos();
+				actions.handleGetContratos();
+				
 				try {
 					const response = await fetch(`${store.URL_BASE}/profile`, {
 						method: "GET",
@@ -231,7 +240,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					localStorage.setItem("pedidos", JSON.stringify(getStore().pedidos));
 				}
 			},
-			
+			handlePostPedidos: async (values) => {
+				let store = getStore();
+				const response = await fetch(`${store.URL_BASE}/contratar`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${store.token}`
+					},
+					body:JSON.stringify(values)
+				})
+				let data = await response.json()
+				console.log(data, "1234")
+
+				if (response.ok) {
+					setStore({
+						...store, contratar:[...store.contratar,data]
+					});
+					// localStorage.setItem("contratar", JSON.stringify(getStore().contratar));
+				}
+			},
 			handleGetContratos: async () => {
 				let store = getStore();
 				const response = await fetch ("http://127.0.0.1:3000/contratos_pendientes", {

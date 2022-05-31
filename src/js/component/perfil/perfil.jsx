@@ -2,17 +2,17 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Context } from '../../store/appContext';
 import './perfil.css';
+
 export const Perfil = () => {
 
     // var user = "Cristhian";
     // console.log(user)
     const { store, actions } = useContext(Context);
-
+   
 
     useEffect(() => {
         actions.getProfile()
     }, [])
-
   return (
     <>
             {/* modal */}
@@ -265,17 +265,34 @@ export const Perfil = () => {
                                 </button>
                                 </h2>
                                 <div id="flush-collapseSix" className="accordion-collapse collapse perfil-servicios" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
-                               {store.servicio < 0 ? 
+                              
+                                {store.usuario <= 0 ? 
+                                
+                                <>
+                               <div className="accordion-body">¿Deseas agregar tus sericios? <Link to="http://localhost:8000/registerservicio">Click aqui</Link></div>
+                               </>
+                                
+                                : store.usuario.servicio.map((item) => {
+                                    return (
+
+
+                                        <p key={item.id} className="ms-2 d-flex mt-2"> <span>{item.nombre}</span> </p>
+                                    )
+                                })
+
+                                }
+                               {/* {store.usuario.servicio > 0 ? 
                                <>
                                <div className="accordion-body">¿Deseas agregar tus sericios? {store.id} <a href="http://localhost:8000/registerservicio">Click aqui</a></div>
-                               </> :
-                               (
-                                <>
-                                <h1>hola que tal</h1>
-                                </>
-                               )
-                            
-                                }
+                               </> :   store.usuario.map((item) => {
+                                   return (
+
+                                 <li key={item.id} className="ms-2 d-flex"> <span>{"Proveedor " + item.servicio.nombre + " " + "Cliente " + item.cliente.nombre}</span> </li>
+                                    )
+                                    })
+
+                                } */}
+                          
                                 
                                 </div>
                             </div>

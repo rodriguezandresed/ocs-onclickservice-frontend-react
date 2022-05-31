@@ -1,12 +1,15 @@
 import React, {useContext, useEffect, useState }  from 'react';
 import './registerservicio.css'
+import { Link, useNavigate } from 'react-router-dom';
 import { Context } from '../../store/appContext';
 
 export const Registerservicio = () => {
+    const navigate = useNavigate();
     let initialState = {
         nombre_tipo_servicio: "",
         nombre_tipo_sub_servicio: "",
-        detalle_tipo_servicio: ""
+        detalle_tipo_servicio: "",
+        status_active: true ,
     }
     // const { store } = useContext(Context);
     const { store, actions } = useContext(Context);
@@ -26,6 +29,7 @@ export const Registerservicio = () => {
         // console.log(values.nombre_tipo_sub_servicio)
         // console.log(values.detalle_tipo_servicio)
         actions.handleRegisterServicio(values);
+        navigate("/perfil")
         // if (validateInfo(values).nombre_tipo_servicio === "" && validateInfo(values).nombre_tipo_sub_servicio === "" && validateInfo(values).detalle_tipo_servicio === "" ) {
         //     // setIsSubmitting(true);
         //     // console.log(isSubmitting)
@@ -37,6 +41,8 @@ export const Registerservicio = () => {
         // }
 
     };
+    
+
     return (
         <>
          <div className="container register-service mt-5">
@@ -87,7 +93,8 @@ export const Registerservicio = () => {
                         <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                         <label className="form-check-label" htmlFor="exampleCheck1">He leido y acepto las politicas de seguridad</label>
                     </div>
-                    <button className="btn servicio-emviar mt-2" onClick={()=> handleSubmitRegister()}>Enviar</button>
+                    <button  onClick={()=> handleSubmitRegister()} className="btn servicio-emviar mt-2" >  Enviar</button>
+                  
                 </form>
 
                 </div>
