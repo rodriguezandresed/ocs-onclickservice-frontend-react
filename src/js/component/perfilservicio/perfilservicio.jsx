@@ -126,7 +126,7 @@ export const Perfilservicio = () => {
                                 <div className="col-9">
                                 </div>
                                 <div className="col-3 d-flex justify-content-end clasficacion px-4 my-4">
-                                    <p>4.5</p><i className="fa-regular fa-star fa-1x mx-2 mt-2"></i>
+                                    <p>{store.detalles.avg_evaluacion}/5</p><i className="fa-regular fa-star fa-1x mx-2 mt-2"></i>
                                 </div>
                             </div>
 

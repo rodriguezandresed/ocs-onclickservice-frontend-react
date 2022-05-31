@@ -4,6 +4,7 @@ import "./proveedores.css"
 import { faker } from '@faker-js/faker'
 import { Context } from '../../store/appContext';
 import { Link } from 'react-router-dom';
+import { FaStar } from 'react-icons/fa'
 
 const Proveedores = () => {
     const param = useParams();
@@ -33,6 +34,10 @@ const Proveedores = () => {
             <div className="picture">
               <img className="img-fluid" src={faker.image.avatar()}/>
             </div>
+            <h4>{item.proveedor.avg_evaluacion}/5 <FaStar 
+            className="star" 
+            color={"#ffc107"} 
+            size={30} /></h4>
             <div className="team-content">
               <h3 className="name">{item.proveedor.nombre}</h3>
               <h4 className="title">{item.nombre}</h4>
