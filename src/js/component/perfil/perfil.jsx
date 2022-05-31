@@ -7,7 +7,7 @@ export const Perfil = () => {
   // console.log(user)
   const { store, actions } = useContext(Context);
 
-  const [ModalData, setModalData] = useState([]);
+  const [modalData, setModalData] = useState([]);
 
 
   useEffect(() => {
@@ -125,15 +125,15 @@ export const Perfil = () => {
                 <i className="fa-solid fa-gear fa-5x my-2"></i>
                 <h3>Tu servicio sigue en proceso</h3>
                 <button type="button" className="mx-2 orden-servicios"
-                onClick={() => {actions.handleEditOrden(ModalData, 1)} }>
+                onClick={() => {actions.handleEditOrden(modalData, 1)} }>
                   Servicio Recibido
                 </button>
                 <button type="button" className="mx-2 orden-servicios"
-                 onClick={() => {actions.handleEditOrden(ModalData, 2)} }>
+                 onClick={() => {actions.handleEditOrden(modalData, 2)} }>
                   Servicio Aceptado
                 </button>
                 <button type="button" className="mx-2 orden-servicios"
-                 onClick={() => {actions.handleEditOrden(ModalData, 3)} }>
+                 onClick={() => {actions.handleEditOrden(modalData, 3)} }>
                   Servicio Cancelado
                 </button>
               </div>
@@ -164,6 +164,45 @@ export const Perfil = () => {
           </div>
         </div>
       </div>
+
+      {/* modal 3 */}
+      <div
+        className="modal fade"
+        id="exampleModal3"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-body px-5">
+              <div className="text-center my-3">
+                <i className="fa-solid fa-gear fa-5x my-2"></i>
+                <h3>Tu servicio sigue en proceso</h3>
+              </div>
+              <div className="mb-3">
+                <label className="form-label">
+                  <h4>Agregar Comentarios </h4>
+                </label>
+                <input type="text" name="comment" onChange={(event)=> setModalData({...modalData, [event.target.comment]: event.target.value})}></input>
+               <button type="button" onClick={()=> actions.handleEditOrden(modalData)}>Enviar</button>
+              </div>
+              <button type="button" className="btn enviar-comentario" onClick={()=> actions.handleEditOrden(modalData)}>Enviar</button>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+                onClick={() => {actions.handleGetContratos(), actions.handleGetPedidos()}}
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* desarrollo página  */}
       <div className="container pt-5">
         <div className="row">
@@ -293,7 +332,8 @@ export const Perfil = () => {
                                     {"Cliente: " + item.cliente.nombre +
                                       " " +
                                       " - Servicio " +
-                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptado: " + item.status_orden_aceptada + " Cancelada: " + item.status_orden_cancelada + " Recibida: " + item.status_orden_recibida}</p>
+                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptado: " + item.status_orden_aceptada + " Cancelada: " + item.status_orden_cancelada + " Recibida: " + item.status_orden_recibida} 
+                                      <br></br> {"Comentarios:" + item.comentarios}</p>
                                       </p>
                                   </div>
                                   <div className="col-2">
@@ -302,6 +342,7 @@ export const Perfil = () => {
                                   className="btn status"
                                   data-bs-toggle="modal"
                                   data-bs-target="#exampleModal2"
+                                  onClick={() => {setModalData(item)} }
                                 >
                                   Ver estatus
                                 </button>
@@ -409,7 +450,8 @@ export const Perfil = () => {
                                     {"Proveedor: " + item.proveedor.nombre +
                                       " " +
                                       " - Servicio " +
-                                      item.orden_detalle_servicio.nombre}<br></br> {" Aceptado: " + item.status_orden_aceptada + " Cancelada: " + item.status_orden_cancelada + " Recibida: " + item.status_orden_recibida}</p>
+                                      item.orden_detalle_servicio.nombre}<br></br> {" Aceptado: " + item.status_orden_aceptada + " Cancelada: " + item.status_orden_cancelada + " Recibida: " + item.status_orden_recibida}
+                                      <br></br> {"Comentarios:" + item.comentarios}</p>
                                       </p>
                                   </div>
                                   <div className="col-2">
@@ -417,7 +459,7 @@ export const Perfil = () => {
                                   type="button"
                                   className="btn status"
                                   data-bs-toggle="modal"
-                                  data-bs-target="#exampleModal2"
+                                  data-bs-target="#exampleModal3"
                                   onClick={() => {setModalData(item)} }
                                 >
                                   Ver estatus

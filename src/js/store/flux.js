@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URL_BASE: "http://127.0.0.1:3000",
+			URL_BASE: "https://3000-rafmanrique-onclickserv-hxvbcv93zfu.ws-us46.gitpod.io",
 			token: localStorage.getItem("token") || "",
 			endPoints: ["servicios", "proveedores"],
 			servicios: [],
@@ -194,7 +194,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			handleGetPedidos: async () => {
 				let store = getStore();
-				const response = await fetch("http://127.0.0.1:3000/pedidos_pendientes", {
+				const response = await fetch("/pedidos_pendientes", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -214,7 +214,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 			handleGetContratos: async () => {
 				let store = getStore();
-				const response = await fetch ("http://127.0.0.1:3000/contratos_pendientes", {
+				const response = await fetch ("/contratos_pendientes", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -260,7 +260,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id}
 				}
 				console.log(status)
-				const response = await fetch (`http://127.0.0.1:3000/editar_orden_cliente/`, {
+				const response = await fetch (`/editar_orden_cliente/`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
@@ -270,6 +270,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				let data = await response.json()
 				if (response.ok){
+					handleGetContratos();
+					handleGetPedidos();
+					console.log("Se edito la orden")
+				}
+
+			},
+
+
+			handleEditPedido: async (item) => {
+				let store = getStore();
+				let box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id, "comentario":item.comentario}
+				const response = await fetch (`/editar_orden_proveedor`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${store.token}`
+				},
+				body: JSON.stringify(box)
+				})
+				let data = await response.json()
+				if (response.ok){
+					handleGetContratos();
+					handleGetPedidos();
 					console.log("Se edito la orden")
 				}
 
