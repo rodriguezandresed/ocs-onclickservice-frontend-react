@@ -139,7 +139,7 @@ export const Perfil = () => {
             <div className="modal-body px-5">
               <div className="text-center my-3">
                 <i className="fa-solid fa-gear fa-5x my-2"></i>
-                <h3>Tu servicio sigue en proceso</h3>
+                <h3>Tu servicio sigue en proceso EDIT ORDEN</h3>
                 <button type="button" className="mx-2 orden-servicios"
                 onClick={() => {actions.handleEditOrden(modalData, 1)} }>
                   Servicio Recibido
@@ -194,16 +194,16 @@ export const Perfil = () => {
             <div className="modal-body px-5">
               <div className="text-center my-3">
                 <i className="fa-solid fa-gear fa-5x my-2"></i>
-                <h3>Tu servicio sigue en proceso</h3>
+                <h3>Tu servicio sigue en proceso EDIT PEDIDO</h3>
               </div>
               <div className="mb-3">
                 <label className="form-label">
                   <h4>Agregar Comentarios </h4>
                 </label>
                 <input type="text" name="comment" onChange={(event)=> setModalData({...modalData, [event.target.comment]: event.target.value})}></input>
-               <button type="button" onClick={()=> actions.handleEditOrden(modalData)}>Enviar</button>
+               <button type="button" onClick={()=> actions.handleEditPedido(modalData)}>Enviar</button>
               </div>
-              <button type="button" className="btn enviar-comentario" onClick={()=> actions.handleEditOrden(modalData)}>Enviar</button>
+              <button type="button" className="btn enviar-comentario" onClick={()=> actions.handleEditPedido(modalData)}>Enviar</button>
             </div>
             <div className="modal-footer">
               <button

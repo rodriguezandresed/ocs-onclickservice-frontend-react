@@ -164,8 +164,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getProfile: async () => {
 				let actions = getActions()
 				let store = getStore();
-				actions.handleGetPedidos();
-				actions.handleGetContratos();
 				try {
 					const response = await fetch(`${store.URL_BASE}/profile`, {
 						method: "GET",
@@ -178,7 +176,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let data = await response.json()
 					
 					if (response.ok) {
-
+						actions.handleGetPedidos();
+						actions.handleGetContratos();
 						setStore({
 							...store, usuario: data
 						})
@@ -194,12 +193,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			handleGetPedidos: async () => {
 				let store = getStore();
-				const response = await fetch("/pedidos_pendientes", {
+				
+				const response = await fetch(`${store.URL_BASE}/pedidos_pendientes`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
 						"Authorization": `Bearer ${store.token}`
 					}
+					
 				})
 				let data = await response.json()
 				
@@ -210,11 +211,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					localStorage.setItem("pedidos", JSON.stringify(getStore().pedidos));
 				}
-			},
+			}
+				
+			,
 			
 			handleGetContratos: async () => {
 				let store = getStore();
-				const response = await fetch ("/contratos_pendientes", {
+				const response = await fetch (`${store.URL_BASE}/contratos_pendientes`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -230,37 +233,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						localStorage.setItem("contratos", JSON.stringify(getStore().contratos));
 					}
+				
 			},
 
 			handleEditOrden: async (item, status) => {
 				let store = getStore();
-				let box = []
+				let actions = getActions();
+				let box = [];
 				if (status == 1 & item.status_orden_recibida == true ){
-					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":false, "id":item.id, "proveedor_id":item.proveedor.id}
+					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":false, "id":item.id, "cliente_id":item.cliente.id}
 					
 				}
 				if (status == 1 & item.status_orden_recibida == false ){
-					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":true, "id":item.id, "proveedor_id":item.proveedor.id}
+					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":true, "id":item.id, "cliente_id":item.cliente.id}
 					
 				}
 
 				if (status == 2 & item.status_orden_aceptada == true ){
-					 box = {"status_orden_aceptada":false, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id}
+					 box = {"status_orden_aceptada":false, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
 
 				}
 				if (status == 2 & item.status_orden_aceptada == false ){
-					 box = {"status_orden_aceptada":true, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id}
+					 box = {"status_orden_aceptada":true, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
 				}
 
 				if (status == 3 & item.status_orden_cancelada == true ){
-					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":false, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id}
+					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":false, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
 
 				}
 				if (status == 3 & item.status_orden_cancelada == false ){
-					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id}
+					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
 				}
 				console.log(status)
-				const response = await fetch (`/editar_orden_cliente/`, {
+				const response = await fetch (`${store.URL_BASE}/editar_orden_proveedor`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
@@ -270,8 +275,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				let data = await response.json()
 				if (response.ok){
-					handleGetContratos();
-					handleGetPedidos();
+					actions.handleGetContratos();
+					actions.handleGetPedidos();
 					console.log("Se edito la orden")
 				}
 
@@ -280,8 +285,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			handleEditPedido: async (item) => {
 				let store = getStore();
-				let box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id, "comentario":item.comentario}
-				const response = await fetch (`/editar_orden_proveedor`, {
+				let actions = getActions();
+				console.log(item)
+				let box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.undefined};
+				const response = await fetch (`${store.URL_BASE}/editar_orden_cliente/`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
@@ -291,8 +298,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				let data = await response.json()
 				if (response.ok){
-					handleGetContratos();
-					handleGetPedidos();
+					actions.handleGetContratos();
+					actions.handleGetPedidos();
 					console.log("Se edito la orden")
 				}
 
