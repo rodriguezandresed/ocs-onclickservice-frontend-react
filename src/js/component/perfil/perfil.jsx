@@ -339,7 +339,7 @@ export const Perfil = () => {
                                       " " +
                                       " - Servicio " +
                                       item.orden_detalle_servicio.nombre}<br></br> { " Aceptado: " + item.status_orden_aceptada + " Cancelada: " + item.status_orden_cancelada + " Recibida: " + item.status_orden_recibida} 
-                                      <br></br> {"Comentarios:" + item.comentarios}</p>
+                                      <br></br> {"Comentarios:" + item.comentario}</p>
                                       </p>
                                   </div>
                                   <div className="col-2">
@@ -446,18 +446,18 @@ export const Perfil = () => {
                       
                       {store.pedidos.length == ""
                           ? "No tienes ordenes de servicio"
-                          : store.pedidos.map((item) => {
+                          : store.pedidos.map((item, i) => {
                               return (
                                   <>
-                                  <div className="col-10 ">
-                                <p key={item.id} className="ms-2 d-flex">
+                                  <div className="col-10 " key={i}>
+                                <p  className="ms-2 d-flex">
                                   {" "}
                                   <p>
                                     {"Proveedor: " + item.proveedor.nombre +
                                       " " +
                                       " - Servicio " +
                                       item.orden_detalle_servicio.nombre}<br></br> {" Aceptado: " + item.status_orden_aceptada + " Cancelada: " + item.status_orden_cancelada + " Recibida: " + item.status_orden_recibida}
-                                      <br></br> {"Comentarios:" + item.comentarios}</p>
+                                      <br></br> {"Comentarios:" + item.comentario}</p>
                                       </p>
                                   </div>
                                   <div className="col-2">
