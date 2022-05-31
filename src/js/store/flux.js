@@ -8,8 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			proveedores: [],
 			usuario: [],
 			detalles: [],
-			pedidos: JSON.parse(localStorage.getItem("pedidos")) || [],
-			contratos: JSON.parse(localStorage.getItem("contratos")) || []
+			pedidos: [],
+			contratos: []
 		},
 		actions: {
 			handleRegister: async (values) => {
@@ -49,13 +49,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				let data = await response.json()
 				if (response.ok) {
-
+					
 
 					setStore({
 						...store, token: data.token
 					});
 					localStorage.setItem("token", data.token);
 
+					actions.handleGetPedidos();
+					actions.handleGetContratos();
 
 				}
 			},
@@ -96,7 +98,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							...store,
 							token: ""
 						})
-						localStorage.removeItem("token")
+						localStorage.removeItem("token");
+						
 					}
 				} catch (error) {
 					console.log(error)
@@ -158,7 +161,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getProfile: async () => {
+				let actions = getActions()
 				let store = getStore();
+				actions.handleGetPedidos();
+				actions.handleGetContratos();
 				try {
 					const response = await fetch(`${store.URL_BASE}/profile`, {
 						method: "GET",
@@ -175,6 +181,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({
 							...store, usuario: data
 						})
+					
 					}
 				}
 
