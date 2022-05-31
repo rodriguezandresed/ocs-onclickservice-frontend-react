@@ -9,7 +9,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuario: [],
 			detalles: [],
 			pedidos: [],
-			contratos: []
+			contratos: [],
+			blackbox:[]
 		},
 		actions: {
 			handleRegister: async (values) => {
@@ -201,7 +202,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 				let data = await response.json()
-				console.log(data)
+				
 
 				if (response.ok) {
 					setStore({
@@ -221,7 +222,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					})
 					let data = await response.json()
-					console.log(data)
+					
 					
 					if (response.ok){
 						setStore({
@@ -229,9 +230,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						localStorage.setItem("contratos", JSON.stringify(getStore().contratos));
 					}
+			},
+
+			handleEditOrden: async (item, status) => {
+				let store = getStore();
+				let box = []
+				if (status == 1 & item.status_orden_recibida == true ){
+					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":false, "id":item.id, "proveedor_id":item.proveedor.id}
+					
+				}
+				if (status == 1 & item.status_orden_recibida == false ){
+					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":true, "id":item.id, "proveedor_id":item.proveedor.id}
+					
+				}
+
+				if (status == 2 & item.status_orden_aceptada == true ){
+					 box = {"status_orden_aceptada":false, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id}
+
+				}
+				if (status == 2 & item.status_orden_aceptada == false ){
+					 box = {"status_orden_aceptada":true, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id}
+				}
+
+				if (status == 3 & item.status_orden_cancelada == true ){
+					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":false, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id}
+
+				}
+				if (status == 3 & item.status_orden_cancelada == false ){
+					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id}
+				}
+				console.log(status)
+				const response = await fetch (`http://127.0.0.1:3000/editar_orden_cliente/`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${store.token}`
+				},
+				body: JSON.stringify(box)
+				})
+				let data = await response.json()
+				if (response.ok){
+					console.log("Se edito la orden")
+				}
+
 			}
 
-		}
+	}
 	}
 };
 ;
