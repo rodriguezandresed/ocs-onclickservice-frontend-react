@@ -155,17 +155,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 							})
 						}
 					}
-					else {
-						let response = await fetch(`${store.URL_BASE}/proveedores/${newCategory}`)
-						let data = await response.json();
-						console.log(data)
+					// else {
+					// 	let response = await fetch(`${store.URL_BASE}/proveedores/${newCategory}`)
+					// 	let data = await response.json();
+					// 	console.log(data)
 
-						if (response.ok) {
-							setStore({
-								...store, proveedores: data
-							})
-						}
-					}
+					// 	if (response.ok) {
+					// 		setStore({
+					// 			...store, proveedores: data
+					// 		})
+					// 	}
+					// }
 				}
 
 				catch (error) {
@@ -460,31 +460,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			}
-
-			// handleRegister: async (values) => {
-			// 	let store = getStore();
-			// 	console.log(values);
-			// 	let actions = getActions();
-			// 	try {
-			// 		const response = await fetch(`${store.URL_BASE}/user`, {
-			// 			method: "POST",
-			// 			headers: {
-			// 				"Content-Type": "application/json"
-			// 			},
-			// 			body: JSON.stringify(values)
-			// 		})
-
-			// 		if (response.ok) {
-
-			// 			actions.handleLogin(values)
-
-			// 		}
-			// 	}
-			// 	catch (error) {
-			// 		console.log(error);
-			// 	}
-
-			// },
 
 	}
 	}
