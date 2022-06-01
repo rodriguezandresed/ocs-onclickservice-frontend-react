@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URL_BASE: "http://127.0.0.1:3000",
+			URL_BASE: "https://3000-rafmanrique-onclickserv-6s94t2sotui.ws-us46.gitpod.io",
 			token: localStorage.getItem("token") || "",
 			endPoints: ["servicios", "proveedores"],
 			servicios: [],
@@ -284,10 +284,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			handleEditPedido: async (item) => {
+			handleEditPedido: async (item, status) => {
 				let store = getStore();
 				let actions = getActions();
-				let box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.undefined};
+				let box = [];
+				
+				if (status == 1 & item.status_orden_cancelada == true ){
+					box = {"status_orden_finalizada":item.status_orden_finalizada, "status_orden_cancelada":false, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.comentario}
+				   
+			   }
+			   if (status == 1 & item.status_orden_cancelada == false ){
+			 box = {"status_orden_finalizada":item.status_orden_finalizada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.comentario}
+				   
+			   }
+
+			   if (status == 2 & item.status_orden_finalizada == true ){
+			box = {"status_orden_finalizada":false, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.comentario}
+
+			   }
+			   if (status == 2 & item.status_orden_finalizada == false ){
+			box = {"status_orden_finalizada":true, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.comentario}
+			   }
+
+			   if (status == 0 ){
+			box = {"status_orden_finalizada":item.status_orden_finalizada, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.undefined}
+			   
+		   }
+			
 				console.log(box)
 				const response = await fetch (`${store.URL_BASE}/editar_orden_cliente/`, {
 				method: "PUT",

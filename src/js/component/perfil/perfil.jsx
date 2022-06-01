@@ -167,7 +167,7 @@ export const Perfil = () => {
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
-                onClick={() => {actions.handleGetContratos(), actions.handleGetPedidos()}}
+                onClick={() => { actions.handleGetContratos(), actions.handleGetPedidos()}}
               >
                 Cerrar
               </button>
@@ -191,17 +191,25 @@ export const Perfil = () => {
                 <i className="fa-solid fa-gear fa-5x my-2"></i>
                 <h3>Edita y/o Agrega un comentario sobre tu Pedido</h3>
               </div>
+              <button type="button" className="mx-2 orden-servicios"
+                onClick={() => {actions.handleEditPedido(modalData, 1)} }>
+                  Servicio Cancelado
+                </button>
+                <button type="button" className="mx-2 orden-servicios"
+                 onClick={() => {actions.handleEditPedido(modalData, 2)} }>
+                  Servicio Finalizado
+                </button>
               <div className="mb-3">
                 <textarea  className="form-control" type="text w-100" name="comment" onChange={(event)=> setModalData({...modalData, [event.target.comment]: event.target.value})}></textarea>
               </div>
-              <button type="button" className="btn enviar-comentario" onClick={()=> actions.handleEditPedido(modalData)}>Enviar</button>
+              <button type="button" className="btn enviar-comentario" onClick={()=> actions.handleEditPedido(modalData, 0)}>Enviar</button>
             </div>
             <div className="modal-footer">
               <button
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
-                onClick={() => {actions.handleGetContratos(), actions.handleGetPedidos()}}
+                onClick={() => { actions.handleGetContratos(), actions.handleGetPedidos()}}
               >
                 Cerrar
               </button>
@@ -329,7 +337,8 @@ export const Perfil = () => {
                                   {"Cliente: " + item.cliente.nombre +
                                       " " +
                                       " - Servicio " +
-                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptado: "} {item.status_orden_aceptada === true ? <FaCheck/>: <FaWindowClose/>} {" Cancelada: "} {item.status_orden_cancelada === true ? <FaCheck/>: <FaWindowClose/>}  {" Recibida: "} {item.status_orden_recibida === true ? <FaCheck/>: <FaWindowClose/>}  
+                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptado: "} {item.status_orden_aceptada === true ? <FaCheck/>: <FaWindowClose/>} {" Cancelado: "} {item.status_orden_cancelada === true ? <FaCheck/>: <FaWindowClose/>}  {" Recibido: "} {item.status_orden_recibida === true ? <FaCheck/>: <FaWindowClose/>}
+                                      {" Finalizado: "} {item.status_orden_finalizada === true ? <FaCheck/>: <FaWindowClose/>}   
                                       <br></br> {"Comentarios: "} {item.comentario != null ? item.comentario: <FaWindowClose/>}</p>
                                       </p>
                                   </div>
@@ -447,7 +456,8 @@ export const Perfil = () => {
                                   {"Proveedor: " + item.proveedor.nombre +
                                       " " +
                                       " - Servicio " +
-                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptado: "} {item.status_orden_aceptada === true ? <FaCheck/>: <FaWindowClose/>} {" Cancelada: "} {item.status_orden_cancelada === true ? <FaCheck/>: <FaWindowClose/>}  {" Recibida: "} {item.status_orden_recibida === true ? <FaCheck/>: <FaWindowClose/>}  
+                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptada: "} {item.status_orden_aceptada === true ? <FaCheck/>: <FaWindowClose/>} {" Cancelada: "} {item.status_orden_cancelada === true ? <FaCheck/>: <FaWindowClose/>}  {" Recibida: "} {item.status_orden_recibida === true ? <FaCheck/>: <FaWindowClose/>}  
+                                       {" Finalizada: "} {item.status_orden_finalizada === true ? <FaCheck/>: <FaWindowClose/>}  
                                       <br></br> {"Comentarios: "} {item.comentario != null ? item.comentario: <FaWindowClose/>}</p>
                                       </p>
                                   </div>
