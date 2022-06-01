@@ -371,6 +371,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					// localStorage.setItem("contratar", JSON.stringify(getStore().contratar));
 				}
+			},
+
+
+			handleEvaluacion: async (item) => {
+				let store = getStore();
+				let actions = getActions();
+				console.log(item)
+				let box = {"proveedor_id":item.proveedor.id, "nombre_tipo_servicio":item.orden_detalle_servicio.nombre_tipo_servicio, "resultado_evaluacion":5}
+			
+				console.log(box)
+				const response = await fetch (`${store.URL_BASE}/evaluar/`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${store.token}`
+				},
+				body: JSON.stringify(box)
+				})
+				let data = await response.json()
+				if (response.ok){
+					actions.handleGetContratos();
+					actions.handleGetPedidos();
+					console.log("Se evaluo al Proveedor")
+				}
+
 			}
 
 			// handleRegister: async (values) => {

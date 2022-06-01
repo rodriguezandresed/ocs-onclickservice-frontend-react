@@ -207,6 +207,10 @@ export const Perfil = () => {
                  onClick={() => {actions.handleEditPedido(modalData, 2)} }>
                   Servicio Finalizado
                 </button>
+                <button type="button" className="mx-2 orden-servicios"
+                 onClick={() => {actions.handleEvaluacion(modalData)} }>
+                  Servicio Evaluado
+                </button>
                 </div>
               <div className="mb-3">
                 <textarea  className="form-control" type="text w-100" name="comment" onChange={(event)=> setModalData({...modalData, [event.target.comment]: event.target.value})}></textarea>
