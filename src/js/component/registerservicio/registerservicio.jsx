@@ -42,6 +42,9 @@ export const Registerservicio = () => {
 
     };
     
+    useEffect(() => {
+        actions.getProfile();
+      }, []);
     
     return (
         <>
