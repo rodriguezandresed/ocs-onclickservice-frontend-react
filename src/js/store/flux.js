@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URL_BASE: "https://3000-rafmanrique-onclickserv-6s94t2sotui.ws-us46.gitpod.io",
+			URL_BASE: "https://3000-rafmanrique-onclickserv-ty7rsprvycx.ws-us46.gitpod.io",
 			token: localStorage.getItem("token") || "",
 			endPoints: ["servicios", "proveedores"],
 			servicios: [],

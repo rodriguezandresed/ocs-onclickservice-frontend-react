@@ -17,6 +17,10 @@ export const Perfil = () => {
     direccion: "",
     telefono: ""
 }
+
+
+
+
   
   const { store, actions } = useContext(Context);
 
@@ -37,6 +41,9 @@ export const Perfil = () => {
   }, []);
 
   return (
+    
+
+
     
     <>
 
@@ -191,7 +198,8 @@ export const Perfil = () => {
                 <i className="fa-solid fa-gear fa-5x my-2"></i>
                 <h3>Edita y/o Agrega un comentario sobre tu Pedido</h3>
               </div>
-              <button type="button" className="mx-2 orden-servicios"
+              <div className="pb-3 d-flex justify-content-center">              
+                <button type="button" className="mx-2 orden-servicios"
                 onClick={() => {actions.handleEditPedido(modalData, 1)} }>
                   Servicio Cancelado
                 </button>
@@ -199,6 +207,7 @@ export const Perfil = () => {
                  onClick={() => {actions.handleEditPedido(modalData, 2)} }>
                   Servicio Finalizado
                 </button>
+                </div>
               <div className="mb-3">
                 <textarea  className="form-control" type="text w-100" name="comment" onChange={(event)=> setModalData({...modalData, [event.target.comment]: event.target.value})}></textarea>
               </div>
