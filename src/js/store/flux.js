@@ -11,7 +11,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			pedidos: [],
 			contratos: [],
 			blackbox:[],
-			contratar:[]
+			contratar:[],
+			pedidos: JSON.parse(localStorage.getItem("pedidos")) || [],
+			contratos: JSON.parse(localStorage.getItem("contratos")) || []
 		},
 		actions: {
 			handleRegister: async (values) => {
@@ -38,6 +40,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			},
+			handleRegisterServicio: async (values) => {
+				let store = getStore();
+				console.log(values);
+				let actions = getActions();
+				try {
+					const response = await fetch(`${store.URL_BASE}/agregar`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`,
+						},
+						body: JSON.stringify(values)
+					})
+
+					if (response.ok) {
+
+						setStore({
+							...store, servicios:[...servicios,data]
+						});
+
+					}
+				}
+				catch (error) {
+					console.log(error);
+				}
+
+			}
+			,
 
 			handleLogin: async (login) => {
 				let store = getStore();
@@ -144,7 +174,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getDetalles: async (proveedor) => {
+				let actions = getActions()
 				let store = getStore();
+				actions.handleGetPedidos();
+				actions.handleGetContratos();
 				try {
 					let response = await fetch(`${store.URL_BASE}/user/${proveedor}`)
 					let data = await response.json();
@@ -166,6 +199,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getProfile: async () => {
 				let actions = getActions()
 				let store = getStore();
+				actions.handleGetPedidos();
+				actions.handleGetContratos();
+				
 				try {
 					const response = await fetch(`${store.URL_BASE}/profile`, {
 						method: "GET",

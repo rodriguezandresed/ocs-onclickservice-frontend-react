@@ -6,19 +6,37 @@ import { Context } from '../../store/appContext';
 
 
 export const Perfilservicio = () => {
-
+    
     const { store, actions } = useContext(Context);
     const params = useParams();
-    const { categoria, id } = params;
+
+    let initialState = {
+        nombre_proveedor: "",
+        nombre_tipo_servicio: "",
+    }
+    console.log(initialState)
+    // const handleChangeContrato = event => {
+    //     console.log(values)
+    //     setValues({
+    //         ...values, [event.target.name]: event.target.value
+    //     });
+    // };
+    // const [values, setValues] = useState(initialState);
+
+    // const handleChangeContrato = event => {
+    //     console.log(values)
+    //     setValues({
+    //         ...values, [event.target.name]: event.target.value
+    //     });
+    // };
+    
+    console.log(store.usuario.nombre, "holaaaa")
+    const {categoria, id} = params;
 
     const [info, setInfo] = useState({});
 
+    // console.log(params)
 
-    const handleSubmitContrato = (values) => {
-        // e.preventDefault()
-        actions.handlePostPedidos(values);
-    
-    }
 
     // const getDetails = () => {
     //     let detail = store["proveedores"].find((item) => {
@@ -34,14 +52,26 @@ export const Perfilservicio = () => {
     // console.log(info)
     // console.log(params)
 
+    const handleSubmitContrato = (values) => {
+        // e.preventDefault()
+        console.log(values, "OLOOO")
+        actions.handlePostPedidos(values);
+    
+    };
+
     useEffect(() => {
         actions.getDetalles(params.id)
+        actions.getProfile()
     }, [])
 
+    
+    
     return (
         <>
 
             {/* modal */}
+
+            
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -52,6 +82,14 @@ export const Perfilservicio = () => {
                         <div className="modal-body">
                             <div className="rom">
                                 <div className="col-12">
+                                {
+                                    store.detalles.servicio?.map((item) => {
+                                        return (
+                                            <p key={item.id} className="ms-2 d-flex mt-2"> <span>{item?.nombre}</span></p>
+                                        )
+                                    })
+
+                                }
                                     <h4>Tipo de servicio</h4>
                                     <p>Plomeria</p>
                                 </div>
@@ -196,38 +234,40 @@ export const Perfilservicio = () => {
                                 </h2>
                                 <div id="flush-collapseFour" className="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
                                     <div className="accordion-body list-servicios">
-                                        {store.detalles.servicio?.map((item, index) => {
-                                            console.log(item, "item")
+                                        {/* <p><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Plomeria</a></p> */}
+                                       {store.detalles.servicio?.map((item,index) => {
+                                           console.log(item, "item")
                                             return (
                                                 <div key={index}>
-                                                    <div className="row">
-                                                        <div className="col-4">
-                                                            <p className="ms-2 d-flex mt-2" > <span>{item?.nombre}</span></p>
-                                                        </div>
-                                                        <div className="col-8 ">
-                                                            <button
-                                                                className="btn status"
-
-                                                                onClick={() => handleSubmitContrato(
-                                                                    {
-                                                                        nombre_proveedor: item.proveedor.nombre,
-                                                                        nombre_tipo_servicio: item.nombre_tipo_servicio,
-
-                                                                    }
-                                                                )}
-                                                            >
-                                                                Solicitar servicio
-                                                            </button>
-
-
-                                                        </div>
-
+                                                <div className="row">
+                                                    <div className="col-4">
+                                                    <p  className="ms-2 d-flex mt-2" > <span>{item?.nombre}</span></p>
                                                     </div>
+                                               <div className="col-8 ">
+                                               <button 
+                                                    className="btn status"
+                                                                                        
+                                                    onClick={()=> handleSubmitContrato( 
+                                                       {
+                                                        nombre_proveedor: item.proveedor.nombre,
+                                                        nombre_tipo_servicio: item.nombre_tipo_servicio,
 
+                                                    }
+                                                    )}
+                                                    >
+                                                        Solicitar servicio
+                                                    </button>
+
+
+                                               </div>
+                                    
+                                                </div>
+                                                   
                                                 </div>
                                             )
                                         })
-                                        }
+                                       }
+
                                     </div>
                                 </div>
                             </div>

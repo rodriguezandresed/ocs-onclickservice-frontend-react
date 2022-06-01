@@ -91,7 +91,7 @@ export const Registerservicio = () => {
                
                     <div className="form-check mt-2">
                         <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                        <label className="form-check-label" for="exampleCheck1">He leido y acepto las politicas de seguridad</label>
+                        <label className="form-check-label" htmlFor="exampleCheck1">He leido y acepto las politicas de seguridad</label>
                     </div>
                     <button  onClick={()=> handleSubmitRegister()} className="btn servicio-emviar mt-2" >  Enviar</button>
                 </form>
