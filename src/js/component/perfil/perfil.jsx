@@ -265,36 +265,28 @@ export const Perfil = () => {
                                     </button>
                                 </h2>
                                 <div id="flush-collapseSix" className="accordion-collapse collapse perfil-servicios" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                                    <div className="accordion-body">
+                                        {store.usuario && store.usuario.servicio <= 0 ?
 
-                                    {store.usuario?.servicio[0]  ?
+                                            <>
+                                               <h4>¿{store.usuario.nombre} no posees ningun servicio? ¿Qué estas esperando para ser parte de nuestros profesionales?</h4> 
 
-                                        <>
-                                            <div className="accordion-body">¿Deseas agregar tus sericios? <Link to="/registerservicio">Click aqui</Link></div>
-                                            <p>Hola que tal</p>
-                                            {console.log(Array.isArray(store.usuario.servicio), "Holaaax2")}
-                                        </>
+                                                {console.log(Array.isArray(store.usuario.servicio), "Holaaax2")}
+                                            </>
 
-                                        : store.usuario.servicio.map((item) => {
-                                            return (
+                                            : store.usuario.servicio?.map((item) => {
+                                                return (
 
+                                                    <>
+                                                        <p key={item.id} className="ms-2 d-flex mt-2"> <span>{item.nombre}</span> </p>
+                                                    </>
+                                                )
+                                            })
 
-                                                <p key={item.id} className="ms-2 d-flex mt-2"> <span>{item.nombre}</span> </p>
-                                            )
-                                        })
+                                        }
+                                        <p>¿Deseas agregar tus sericios? <Link to="/registerservicio"> Click aqui</Link> </p>
 
-                                    }
-                                    {/* {store.usuario.servicio > 0 ? 
-                               <>
-                               <div className="accordion-body">¿Deseas agregar tus sericios? {store.id} <a href="http://localhost:8000/registerservicio">Click aqui</a></div>
-                               </> :   store.usuario.map((item) => {
-                                   return (
-
-                                 <li key={item.id} className="ms-2 d-flex"> <span>{"Proveedor " + item.servicio.nombre + " " + "Cliente " + item.cliente.nombre}</span> </li>
-                                    )
-                                    })
-
-                                } */}
-
+                                    </div>
 
                                 </div>
                             </div>

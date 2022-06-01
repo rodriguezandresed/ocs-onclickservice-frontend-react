@@ -205,47 +205,21 @@ export const Perfilservicio = () => {
                                                 <h4>Usuario</h4>
                                             </div>
                                             <div className="col-7 datos-perfil mt-3">
-                                                <p>CristhianCotte</p>
+                                                <p>{store.detalles.email}</p>
                                             </div>
                                             <div className="col-5 mt-3">
                                                 <h4>Nombre y apellido</h4>
                                             </div>
                                             <div className="col-7 datos-perfil mt-3">
-                                                <p>Cristhian Cotte</p>
+                                                <p>{store.detalles.nombre}</p>
                                             </div>
                                             <div className="col-5 mt-3">
                                                 <h4>Dirección</h4>
                                             </div>
                                             <div className="col-7 datos-perfil mt-3">
-                                                <p>Distrito Capital</p>
+                                                <p>{store.detalles.direction}</p>
                                             </div>
-                                            <div className="col-5 mt-3">
-                                                <h4>Correo</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>prueba@gmail.com</p>
-                                            </div>
-                                            <div className="col-5 mt-3">
-                                                <h4>Redes sociales</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>prueba@gmail.com</p>
-                                            </div>
-                                            <div className="col-5 mt-3">
-                                                <h4>Ciudad</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>Distrito Capital</p>
-                                            </div>
-                                            <div className="col-5 mt-3">
-                                                <h4>Página web</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>prueba.com</p>
-                                            </div>
-
-
-
+                                         
                                         </div>
 
                                     </div>
@@ -264,12 +238,16 @@ export const Perfilservicio = () => {
                                            console.log(item, "item")
                                             return (
                                                 <div key={index}>
-                                                <div className="row">
-                                                    <div className="col-4">
-                                                    <p  className="ms-2 d-flex mt-2" > <span>{item?.nombre}</span></p>
+                                                <div className="row ">
+                                                    <div className="col-6">
+                                                  <h4><b  className="ms-2 " > <span>{item?.nombre}</span></b> </h4>  
                                                     </div>
-                                               <div className="col-8 ">
-                                               <button 
+
+                                                    
+                                               <div className="col-6">
+
+                                                   {store.token.length != "" ? <>
+                                                   <button 
                                                     className="btn status"
                                                                                         
                                                     onClick={()=> handleSubmitContrato( 
@@ -282,10 +260,21 @@ export const Perfilservicio = () => {
                                                     >
                                                         Solicitar servicio
                                                     </button>
-
-
+                                                   
+                                                   </>
+                                                    :
+                                                    <>
+                                                    
+                                                    </> 
+                                                }
+                                             
                                                </div>
-                                    
+                                                    <div className="col-6">
+                                                        <b> <i className="fa-solid fa-file-lines fa-1x"></i>  Nombre del sub servicio</b>
+                                                        <p className='detalle-servicio'>{item?.sub_servicio} </p>
+                                                        <b><i className="fa-solid fa-file-lines fa-1x"></i> Detalle del servicio</b>
+                                                        <p className='detalle-servicio'>{item?.detalle} </p>
+                                                    </div>
                                                 </div>
                                                    
                                                 </div>
@@ -306,6 +295,48 @@ export const Perfilservicio = () => {
                                     <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
                                 </div>
                             </div>
+                            
+                            {store.token.length != "" ? 
+                            <>
+                             <div className="accordion-item">
+                                <h2 className="accordion-header" id="flush-headingInformation">
+                                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseInformation" aria-expanded="false" aria-controls="flush-collapseInformation">
+                                        <i className="fa-solid fa-shield-halved fa-2x mx-2"></i> Información de contacto
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseInformation" className="accordion-collapse collapse" aria-labelledby="flush-headingInformation" data-bs-parent="#accordionFlushExample">
+                                    <div className="accordion-body">
+                                    <div className="row">
+                                            <div className="col-5 mt-3">
+                                                <h4>Correo</h4>
+                                            </div>
+                                            <div className="col-7 datos-perfil mt-3">
+                                                <p>{store.detalles.email}</p>
+                                            </div>
+                                            <div className="col-5 mt-3">
+                                                <h4>Telefono</h4>
+                                            </div>
+                                            <div className="col-7 datos-perfil mt-3">
+                                                <p>{store.detalles.telefono}</p>
+                                            </div>
+                                            <div className="col-5 mt-3">
+                                                <h4>Dirección</h4>
+                                            </div>
+                                            <div className="col-7 datos-perfil mt-3">
+                                                <p>{store.detalles.direccion}</p>
+                                            </div>
+                                         
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            </> : 
+                            <>
+                            
+                            </>
+                            }
+                           
                             <div className="accordion-item">
                                 <h2 className="accordion-header" id="flush-headingThree">
                                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
