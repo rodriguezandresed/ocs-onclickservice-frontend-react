@@ -46,7 +46,9 @@ const FormSignup = ({ submitForm}) => {
         </div>
         {/* <Link to="/"> */}
         <button className='form-input-btn' type='submit' onClick={() => actions.handleLogin(values)}>
+          <Link to="/">
           Ingresar
+          </Link>
         </button>
         {/* </Link> */}
         <span className='form-input-login'>

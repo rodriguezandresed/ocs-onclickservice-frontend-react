@@ -10,7 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			detalles: [],
 			pedidos: [],
 			contratos: [],
-			blackbox:[]
+			blackbox:[],
+			contratar:[]
 		},
 		actions: {
 			handleRegister: async (values) => {
@@ -326,6 +327,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 				
+			},
+
+			handlePostPedidos: async (values) => {
+				let store = getStore();
+				const response = await fetch(`${store.URL_BASE}/contratar`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${store.token}`
+					},
+					body:JSON.stringify(values)
+				})
+				let data = await response.json()
+				console.log(data, "1234")
+
+				if (response.ok) {
+					setStore({
+						...store, contratar:[...store.contratar,data]
+					});
+					// localStorage.setItem("contratar", JSON.stringify(getStore().contratar));
+				}
 			}
 
 			// handleRegister: async (values) => {

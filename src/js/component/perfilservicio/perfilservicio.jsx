@@ -9,12 +9,16 @@ export const Perfilservicio = () => {
 
     const { store, actions } = useContext(Context);
     const params = useParams();
-    const {categoria, id} = params;
-    
+    const { categoria, id } = params;
+
     const [info, setInfo] = useState({});
 
- 
 
+    const handleSubmitContrato = (values) => {
+        // e.preventDefault()
+        actions.handlePostPedidos(values);
+    
+    }
 
     // const getDetails = () => {
     //     let detail = store["proveedores"].find((item) => {
@@ -36,7 +40,7 @@ export const Perfilservicio = () => {
 
     return (
         <>
-          
+
             {/* modal */}
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
@@ -162,50 +166,23 @@ export const Perfilservicio = () => {
 
                                         <div className="row">
                                             <div className="col-5 mt-3">
-                                                <h4>Usuario</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>CristhianCotte</p>
-                                            </div>
-                                            <div className="col-5 mt-3">
                                                 <h4>Nombre y apellido</h4>
                                             </div>
                                             <div className="col-7 datos-perfil mt-3">
-                                                <p>Cristhian Cotte</p>
+                                                <p>{store.detalles.nombre}</p>
                                             </div>
                                             <div className="col-5 mt-3">
-                                                <h4>Dirección</h4>
+                                                <h4>Ciudad/Estado</h4>
                                             </div>
                                             <div className="col-7 datos-perfil mt-3">
-                                                <p>Distrito Capital</p>
+                                                <p>{store.detalles.direccion}</p>
                                             </div>
                                             <div className="col-5 mt-3">
                                                 <h4>Correo</h4>
                                             </div>
                                             <div className="col-7 datos-perfil mt-3">
-                                                <p>prueba@gmail.com</p>
+                                                <p>{store.detalles.email}</p>
                                             </div>
-                                            <div className="col-5 mt-3">
-                                                <h4>Redes sociales</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>prueba@gmail.com</p>
-                                            </div>
-                                            <div className="col-5 mt-3">
-                                                <h4>Ciudad</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>Distrito Capital</p>
-                                            </div>
-                                            <div className="col-5 mt-3">
-                                                <h4>Página web</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>prueba.com</p>
-                                            </div>
-
-
-
                                         </div>
 
                                     </div>
@@ -219,9 +196,38 @@ export const Perfilservicio = () => {
                                 </h2>
                                 <div id="flush-collapseFour" className="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
                                     <div className="accordion-body list-servicios">
-                                        <p><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Plomeria</a></p>
-                                        <p><a href="#">Electricidad</a></p>
-                                        <p><a href="#">Chef</a></p>
+                                        {store.detalles.servicio?.map((item, index) => {
+                                            console.log(item, "item")
+                                            return (
+                                                <div key={index}>
+                                                    <div className="row">
+                                                        <div className="col-4">
+                                                            <p className="ms-2 d-flex mt-2" > <span>{item?.nombre}</span></p>
+                                                        </div>
+                                                        <div className="col-8 ">
+                                                            <button
+                                                                className="btn status"
+
+                                                                onClick={() => handleSubmitContrato(
+                                                                    {
+                                                                        nombre_proveedor: item.proveedor.nombre,
+                                                                        nombre_tipo_servicio: item.nombre_tipo_servicio,
+
+                                                                    }
+                                                                )}
+                                                            >
+                                                                Solicitar servicio
+                                                            </button>
+
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            )
+                                        })
+                                        }
                                     </div>
                                 </div>
                             </div>
