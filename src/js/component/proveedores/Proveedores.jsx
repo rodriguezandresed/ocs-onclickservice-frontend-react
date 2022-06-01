@@ -16,7 +16,7 @@ const Proveedores = () => {
     useEffect(() => {
       actions.getCategoria(param.categoria)
     }, []);
-    console.log(store.proveedores);
+   
 
 
     // let fakeImage = faker.image.people(130, 130, false);

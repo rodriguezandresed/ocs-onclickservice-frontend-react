@@ -2,6 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import "./perfil.css";
+
+
+import { FaCheck, FaWindowClose, FaPencilAlt } from 'react-icons/fa';
+
+
+
 export const Perfil = () => {
   // var user = "Cristhian";
   // console.log(user)
@@ -31,7 +37,9 @@ export const Perfil = () => {
   }, []);
 
   return (
+    
     <>
+
       {/* modal */}
       <div
         className="modal fade"
@@ -139,7 +147,7 @@ export const Perfil = () => {
             <div className="modal-body px-5">
               <div className="text-center my-3">
                 <i className="fa-solid fa-gear fa-5x my-2"></i>
-                <h3>Tu servicio sigue en proceso EDIT ORDEN</h3>
+                <h3>Modificar el Status del Contrato</h3>
                 <button type="button" className="mx-2 orden-servicios"
                 onClick={() => {actions.handleEditOrden(modalData, 1)} }>
                   Servicio Recibido
@@ -153,19 +161,6 @@ export const Perfil = () => {
                   Servicio Cancelado
                 </button>
               </div>
-              <div className="mb-3">
-                <label className="form-label">
-                  <h4>Agregar Comentarios </h4>
-                </label>
-                <textarea
-                  className="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                ></textarea>
-              </div>
-              <button type="button" className="btn enviar-comentario">
-                Enviar
-              </button>
             </div>
             <div className="modal-footer">
               <button
@@ -194,14 +189,10 @@ export const Perfil = () => {
             <div className="modal-body px-5">
               <div className="text-center my-3">
                 <i className="fa-solid fa-gear fa-5x my-2"></i>
-                <h3>Tu servicio sigue en proceso EDIT PEDIDO</h3>
+                <h3>Edita y/o Agrega un comentario sobre tu Pedido</h3>
               </div>
               <div className="mb-3">
-                <label className="form-label">
-                  <h4>Agregar Comentarios </h4>
-                </label>
-                <input type="text" name="comment" onChange={(event)=> setModalData({...modalData, [event.target.comment]: event.target.value})}></input>
-               <button type="button" onClick={()=> actions.handleEditPedido(modalData)}>Enviar</button>
+                <textarea  className="form-control" type="text w-100" name="comment" onChange={(event)=> setModalData({...modalData, [event.target.comment]: event.target.value})}></textarea>
               </div>
               <button type="button" className="btn enviar-comentario" onClick={()=> actions.handleEditPedido(modalData)}>Enviar</button>
             </div>
@@ -332,25 +323,25 @@ export const Perfil = () => {
                               return (
                                   <>
                                   <div className="col-10 ">
-                                <p key={item.id} className="ms-2 d-flex">
+                                  <p  className="ms-2 d-flex">
                                   {" "}
                                   <p>
-                                    {"Cliente: " + item.cliente.nombre +
+                                  {"Cliente: " + item.cliente.nombre +
                                       " " +
                                       " - Servicio " +
-                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptado: " + item.status_orden_aceptada + " Cancelada: " + item.status_orden_cancelada + " Recibida: " + item.status_orden_recibida} 
-                                      <br></br> {"Comentarios:" + item.comentario}</p>
+                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptado: "} {item.status_orden_aceptada === true ? <FaCheck/>: <FaWindowClose/>} {" Cancelada: "} {item.status_orden_cancelada === true ? <FaCheck/>: <FaWindowClose/>}  {" Recibida: "} {item.status_orden_recibida === true ? <FaCheck/>: <FaWindowClose/>}  
+                                      <br></br> {"Comentarios: "} {item.comentario != null ? item.comentario: <FaWindowClose/>}</p>
                                       </p>
                                   </div>
-                                  <div className="col-2">
+                                  <div className="col-2 d-flex pt-3 ">
                                   <button
                                   type="button"
-                                  className="btn status"
+                                  className="btn status w-100 h-50 "
                                   data-bs-toggle="modal"
                                   data-bs-target="#exampleModal2"
                                   onClick={() => {setModalData(item)} }
                                 >
-                                  Ver estatus
+                                 <FaPencilAlt/>
                                 </button>
                                   </div>
                                 
@@ -453,22 +444,22 @@ export const Perfil = () => {
                                 <p  className="ms-2 d-flex">
                                   {" "}
                                   <p>
-                                    {"Proveedor: " + item.proveedor.nombre +
+                                  {"Proveedor: " + item.proveedor.nombre +
                                       " " +
                                       " - Servicio " +
-                                      item.orden_detalle_servicio.nombre}<br></br> {" Aceptado: " + item.status_orden_aceptada + " Cancelada: " + item.status_orden_cancelada + " Recibida: " + item.status_orden_recibida}
-                                      <br></br> {"Comentarios:" + item.comentario}</p>
+                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptado: "} {item.status_orden_aceptada === true ? <FaCheck/>: <FaWindowClose/>} {" Cancelada: "} {item.status_orden_cancelada === true ? <FaCheck/>: <FaWindowClose/>}  {" Recibida: "} {item.status_orden_recibida === true ? <FaCheck/>: <FaWindowClose/>}  
+                                      <br></br> {"Comentarios: "} {item.comentario != null ? item.comentario: <FaWindowClose/>}</p>
                                       </p>
                                   </div>
-                                  <div className="col-2">
+                                  <div className="col-2 d-flex pt-3 ">
                                   <button
                                   type="button"
-                                  className="btn status"
+                                  className="btn status w-100 h-50 "
                                   data-bs-toggle="modal"
                                   data-bs-target="#exampleModal3"
                                   onClick={() => {setModalData(item)} }
                                 >
-                                  Ver estatus
+                                  <FaPencilAlt/>
                                 </button>
                                   </div>
                                 

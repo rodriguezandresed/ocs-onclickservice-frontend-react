@@ -13,7 +13,7 @@ export const Perfilservicio = () => {
     
     const [info, setInfo] = useState({});
 
-    console.log(params)
+ 
 
 
     // const getDetails = () => {
@@ -36,6 +36,7 @@ export const Perfilservicio = () => {
 
     return (
         <>
+          
             {/* modal */}
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">

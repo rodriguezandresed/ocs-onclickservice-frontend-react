@@ -250,19 +250,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 				if (status == 2 & item.status_orden_aceptada == true ){
-					 box = {"status_orden_aceptada":false, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
+					 box = {"status_orden_aceptada":false, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
 
 				}
 				if (status == 2 & item.status_orden_aceptada == false ){
-					 box = {"status_orden_aceptada":true, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
+					 box = {"status_orden_aceptada":true, "status_orden_cancelada":false, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
 				}
 
 				if (status == 3 & item.status_orden_cancelada == true ){
-					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":false, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
+					 box = {"status_orden_aceptada":true, "status_orden_cancelada":false, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
 
 				}
 				if (status == 3 & item.status_orden_cancelada == false ){
-					 box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
+					 box = {"status_orden_aceptada":false, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
 				}
 				console.log(status)
 				const response = await fetch (`${store.URL_BASE}/editar_orden_proveedor`, {
@@ -286,8 +286,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			handleEditPedido: async (item) => {
 				let store = getStore();
 				let actions = getActions();
-				console.log(item)
 				let box = {"status_orden_aceptada":item.status_orden_aceptada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.undefined};
+				console.log(box)
 				const response = await fetch (`${store.URL_BASE}/editar_orden_cliente/`, {
 				method: "PUT",
 				headers: {
