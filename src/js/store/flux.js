@@ -155,17 +155,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 							})
 						}
 					}
-					// else {
-					// 	let response = await fetch(`${store.URL_BASE}/proveedores/${newCategory}`)
-					// 	let data = await response.json();
-					// 	console.log(data)
+					else {
+						let response = await fetch(`${store.URL_BASE}/proveedores/${newCategory}`)
+						let data = await response.json();
+						console.log(data)
 
-					// 	if (response.ok) {
-					// 		setStore({
-					// 			...store, proveedores: data
-					// 		})
-					// 	}
-					// }
+						if (response.ok) {
+							setStore({
+								...store, proveedores: data
+							})
+						}
+					}
 				}
 
 				catch (error) {
@@ -327,20 +327,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let box = [];
 				
 				if (status == 1 & item.status_orden_cancelada == true ){
-					box = {"status_orden_finalizada":item.status_orden_finalizada, "status_orden_cancelada":false, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.comentario}
+					box = {"status_orden_finalizada":item.status_orden_finalizada, "status_orden_cancelada":false, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.undefined}
 				   
 			   }
 			   if (status == 1 & item.status_orden_cancelada == false ){
-			 box = {"status_orden_finalizada":item.status_orden_finalizada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.comentario}
+			 box = {"status_orden_finalizada":item.status_orden_finalizada, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.undefined}
 				   
 			   }
 
 			   if (status == 2 & item.status_orden_finalizada == true ){
-			box = {"status_orden_finalizada":false, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.comentario}
+			box = {"status_orden_finalizada":false, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.undefined}
 
 			   }
 			   if (status == 2 & item.status_orden_finalizada == false ){
-			box = {"status_orden_finalizada":true, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.comentario}
+			box = {"status_orden_finalizada":true, "status_orden_cancelada":item.status_orden_cancelada, "status_orden_recibida":item.status_orden_recibida, "status_orden_aceptada":item.status_orden_aceptada, "id":item.id, "proveedor_id":item.proveedor.id, "comentario":item.undefined}
 			   }
 
 			   if (status == 0 ){

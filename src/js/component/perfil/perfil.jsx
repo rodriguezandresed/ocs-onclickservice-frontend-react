@@ -502,7 +502,7 @@ export const Perfil = () => {
                     Servicios
                   </button>
                 </h2>
-                <div
+                {/* <div
                   id="flush-collapseSix"
                   className="accordion-collapse collapse perfil-servicios"
                   aria-labelledby="flush-headingSix"
@@ -528,7 +528,7 @@ export const Perfil = () => {
                     
 
                   }
-                </div>
+                </div> */}
                 <div><p>Para agregar tus servicios haz <Link to="/registerservicio">Click aqui</Link></p></div>
               </div>
             </div>
