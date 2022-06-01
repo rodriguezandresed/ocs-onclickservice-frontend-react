@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URL_BASE: "https://3000-rafmanrique-onclickserv-6s94t2sotui.ws-us46.gitpod.io",
+			URL_BASE: "http://127.0.0.1:3000",
 			token: localStorage.getItem("token") || "",
 			endPoints: ["servicios", "proveedores"],
 			servicios: [],
@@ -60,6 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					actions.handleGetPedidos();
 					actions.handleGetContratos();
+					actions.getProfile();
 
 				}
 			},
@@ -371,6 +372,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					// localStorage.setItem("contratar", JSON.stringify(getStore().contratar));
 				}
+			},
+
+			handleRegisterServicio: async (values) => {
+				let store = getStore();
+				console.log(values);
+				let actions = getActions();
+				try {
+					const response = await fetch(`${store.URL_BASE}/agregar`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`,
+						},
+						body: JSON.stringify(values)
+					})
+
+					if (response.ok) {
+
+						setStore({
+							...store, servicios:[...servicios,data]
+						});
+
+					}
+				}
+				catch (error) {
+					console.log(error);
+				}
+
 			}
 
 			// handleRegister: async (values) => {

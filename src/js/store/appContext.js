@@ -32,6 +32,7 @@ const injectContext = PassedComponent => {
 			 *
 			 **/
 			 state.actions.fetchServicios();
+			 state.actions.getProfile()
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,

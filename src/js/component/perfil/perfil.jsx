@@ -16,8 +16,8 @@ export const Perfil = () => {
     email: "",
     direccion: "",
     telefono: ""
-}
-  
+  }
+
   const { store, actions } = useContext(Context);
 
   const [modalData, setModalData] = useState([]);
@@ -27,9 +27,9 @@ export const Perfil = () => {
   const handleChange = event => {
 
     setProfileData({
-        ...profileData, [event.target.name]: event.target.value
+      ...profileData, [event.target.name]: event.target.value
     });
-};
+  };
 
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export const Perfil = () => {
   }, []);
 
   return (
-    
+
     <>
 
       {/* modal */}
@@ -126,8 +126,8 @@ export const Perfil = () => {
               >
                 Cerrar
               </button>
-              <button type="button" className="btn actualizar" 
-              onClick={() => actions.updateProfile(profileData)}>
+              <button type="button" className="btn actualizar"
+                onClick={() => actions.updateProfile(profileData)}>
                 Actualizar
               </button>
             </div>
@@ -149,15 +149,15 @@ export const Perfil = () => {
                 <i className="fa-solid fa-gear fa-5x my-2"></i>
                 <h3>Modificar el Status del Contrato</h3>
                 <button type="button" className="mx-2 orden-servicios"
-                onClick={() => {actions.handleEditOrden(modalData, 1)} }>
+                  onClick={() => { actions.handleEditOrden(modalData, 1) }}>
                   Servicio Recibido
                 </button>
                 <button type="button" className="mx-2 orden-servicios"
-                 onClick={() => {actions.handleEditOrden(modalData, 2)} }>
+                  onClick={() => { actions.handleEditOrden(modalData, 2) }}>
                   Servicio Aceptado
                 </button>
                 <button type="button" className="mx-2 orden-servicios"
-                 onClick={() => {actions.handleEditOrden(modalData, 3)} }>
+                  onClick={() => { actions.handleEditOrden(modalData, 3) }}>
                   Servicio Cancelado
                 </button>
               </div>
@@ -167,7 +167,7 @@ export const Perfil = () => {
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
-                onClick={() => { actions.handleGetContratos(), actions.handleGetPedidos()}}
+                onClick={() => { actions.handleGetContratos(), actions.handleGetPedidos() }}
               >
                 Cerrar
               </button>
@@ -192,24 +192,24 @@ export const Perfil = () => {
                 <h3>Edita y/o Agrega un comentario sobre tu Pedido</h3>
               </div>
               <button type="button" className="mx-2 orden-servicios"
-                onClick={() => {actions.handleEditPedido(modalData, 1)} }>
-                  Servicio Cancelado
-                </button>
-                <button type="button" className="mx-2 orden-servicios"
-                 onClick={() => {actions.handleEditPedido(modalData, 2)} }>
-                  Servicio Finalizado
-                </button>
+                onClick={() => { actions.handleEditPedido(modalData, 1) }}>
+                Servicio Cancelado
+              </button>
+              <button type="button" className="mx-2 orden-servicios"
+                onClick={() => { actions.handleEditPedido(modalData, 2) }}>
+                Servicio Finalizado
+              </button>
               <div className="mb-3">
-                <textarea  className="form-control" type="text w-100" name="comment" onChange={(event)=> setModalData({...modalData, [event.target.comment]: event.target.value})}></textarea>
+                <textarea className="form-control" type="text w-100" name="comment" onChange={(event) => setModalData({ ...modalData, [event.target.comment]: event.target.value })}></textarea>
               </div>
-              <button type="button" className="btn enviar-comentario" onClick={()=> actions.handleEditPedido(modalData, 0)}>Enviar</button>
+              <button type="button" className="btn enviar-comentario" onClick={() => actions.handleEditPedido(modalData, 0)}>Enviar</button>
             </div>
             <div className="modal-footer">
               <button
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
-                onClick={() => { actions.handleGetContratos(), actions.handleGetPedidos()}}
+                onClick={() => { actions.handleGetContratos(), actions.handleGetPedidos() }}
               >
                 Cerrar
               </button>
@@ -226,7 +226,7 @@ export const Perfil = () => {
             <div className="fondo-perfil"></div>
             <div className="row d-flex align-items-center px-5 pb-3">
               <div className="col-5 foto-perfil">
-                  <img src={store.usuario.imagen}/>
+                <img src={store.usuario.imagen} />
               </div>
               <div className="col-7 date-perfil pt-4">
                 <h2>{store.usuario.nombre}</h2>
@@ -325,39 +325,39 @@ export const Perfil = () => {
                 >
                   <div className="accordion-body orden-servicio">
                     <div className="row d-flex justify-content-center ">
-                    {store.contratos.length == ""
-                          ? "No tienes servicios solicitados"
-                          : store.contratos.map((item) => {
-                              return (
-                                  <>
-                                  <div className="col-10 ">
-                                  <p  className="ms-2 d-flex">
+                      {store.contratos.length == ""
+                        ? "No tienes servicios solicitados"
+                        : store.contratos.map((item) => {
+                          return (
+                            <>
+                              <div className="col-10 ">
+                                <p className="ms-2 d-flex">
                                   {" "}
                                   <p>
-                                  {"Cliente: " + item.cliente.nombre +
+                                    {"Cliente: " + item.cliente.nombre +
                                       " " +
                                       " - Servicio " +
-                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptado: "} {item.status_orden_aceptada === true ? <FaCheck/>: <FaWindowClose/>} {" Cancelado: "} {item.status_orden_cancelada === true ? <FaCheck/>: <FaWindowClose/>}  {" Recibido: "} {item.status_orden_recibida === true ? <FaCheck/>: <FaWindowClose/>}
-                                      {" Finalizado: "} {item.status_orden_finalizada === true ? <FaCheck/>: <FaWindowClose/>}   
-                                      <br></br> {"Comentarios: "} {item.comentario != null ? item.comentario: <FaWindowClose/>}</p>
-                                      </p>
-                                  </div>
-                                  <div className="col-2 d-flex pt-3 ">
-                                  <button
+                                      item.orden_detalle_servicio.nombre}<br></br> {" Aceptado: "} {item.status_orden_aceptada === true ? <FaCheck /> : <FaWindowClose />} {" Cancelado: "} {item.status_orden_cancelada === true ? <FaCheck /> : <FaWindowClose />}  {" Recibido: "} {item.status_orden_recibida === true ? <FaCheck /> : <FaWindowClose />}
+                                    {" Finalizado: "} {item.status_orden_finalizada === true ? <FaCheck /> : <FaWindowClose />}
+                                    <br></br> {"Comentarios: "} {item.comentario != null ? item.comentario : <FaWindowClose />}</p>
+                                </p>
+                              </div>
+                              <div className="col-2 d-flex pt-3 ">
+                                <button
                                   type="button"
                                   className="btn status w-100 h-50 "
                                   data-bs-toggle="modal"
                                   data-bs-target="#exampleModal2"
-                                  onClick={() => {setModalData(item)} }
+                                  onClick={() => { setModalData(item) }}
                                 >
-                                 <FaPencilAlt/>
+                                  <FaPencilAlt />
                                 </button>
-                                  </div>
-                                
-                              </>
+                              </div>
 
-                              );
-                            })}
+                            </>
+
+                          );
+                        })}
                     </div>
                   </div>
                 </div>
@@ -443,40 +443,40 @@ export const Perfil = () => {
                 >
                   <div className="accordion-body orden-servicio">
                     <div className="row d-flex justify-content-center ">
-                      
+
                       {store.pedidos.length == ""
-                          ? "No tienes ordenes de servicio"
-                          : store.pedidos.map((item, i) => {
-                              return (
-                                  <>
-                                  <div className="col-10 " key={i}>
-                                <p  className="ms-2 d-flex">
+                        ? "No tienes ordenes de servicio"
+                        : store.pedidos.map((item, i) => {
+                          return (
+                            <>
+                              <div className="col-10 " key={i}>
+                                <p className="ms-2 d-flex">
                                   {" "}
                                   <p>
-                                  {"Proveedor: " + item.proveedor.nombre +
+                                    {"Proveedor: " + item.proveedor.nombre +
                                       " " +
                                       " - Servicio " +
-                                      item.orden_detalle_servicio.nombre}<br></br> { " Aceptada: "} {item.status_orden_aceptada === true ? <FaCheck/>: <FaWindowClose/>} {" Cancelada: "} {item.status_orden_cancelada === true ? <FaCheck/>: <FaWindowClose/>}  {" Recibida: "} {item.status_orden_recibida === true ? <FaCheck/>: <FaWindowClose/>}  
-                                       {" Finalizada: "} {item.status_orden_finalizada === true ? <FaCheck/>: <FaWindowClose/>}  
-                                      <br></br> {"Comentarios: "} {item.comentario != null ? item.comentario: <FaWindowClose/>}</p>
-                                      </p>
-                                  </div>
-                                  <div className="col-2 d-flex pt-3 ">
-                                  <button
+                                      item.orden_detalle_servicio.nombre}<br></br> {" Aceptada: "} {item.status_orden_aceptada === true ? <FaCheck /> : <FaWindowClose />} {" Cancelada: "} {item.status_orden_cancelada === true ? <FaCheck /> : <FaWindowClose />}  {" Recibida: "} {item.status_orden_recibida === true ? <FaCheck /> : <FaWindowClose />}
+                                    {" Finalizada: "} {item.status_orden_finalizada === true ? <FaCheck /> : <FaWindowClose />}
+                                    <br></br> {"Comentarios: "} {item.comentario != null ? item.comentario : <FaWindowClose />}</p>
+                                </p>
+                              </div>
+                              <div className="col-2 d-flex pt-3 ">
+                                <button
                                   type="button"
                                   className="btn status w-100 h-50 "
                                   data-bs-toggle="modal"
                                   data-bs-target="#exampleModal3"
-                                  onClick={() => {setModalData(item)} }
+                                  onClick={() => { setModalData(item) }}
                                 >
-                                  <FaPencilAlt/>
+                                  <FaPencilAlt />
                                 </button>
-                                  </div>
-                                
-                              </>
+                              </div>
 
-                              );
-                            })}                
+                            </>
+
+                          );
+                        })}
                     </div>
                   </div>
                 </div>
@@ -502,13 +502,28 @@ export const Perfil = () => {
                   aria-labelledby="flush-headingSix"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div className="accordion-body">
-                    ¿Deseas agregar tus servicios?{" "}
-                    <a href="http://localhost:8000/registerservicio">
-                      Click aqui
-                    </a>
-                  </div>
+                  {store.usuario && store.usuario.servicio <= 0 ?
+
+                    <>
+                      <div className="accordion-body">No tienes servicios agregados en tu perfil</div>
+                      {console.log(Array.isArray(store.usuario.servicio), "Holaaax2")}
+                    </>
+
+                    : 
+                    
+                    store.usuario.servicio.map((item) => {
+                      return (
+
+
+                        <p key={item.id} className="ms-2 d-flex mt-2"> <span>{item.nombre}</span> </p>
+                      )
+                    } )
+
+                    
+
+                  }
                 </div>
+                <div><p>Para agregar tus servicios haz <Link to="/registerservicio">Click aqui</Link></p></div>
               </div>
             </div>
           </div>
