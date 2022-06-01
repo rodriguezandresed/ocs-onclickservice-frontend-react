@@ -1,7 +1,11 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+<<<<<<< HEAD
 			URL_BASE: "http://127.0.0.1:3000",
+=======
+			URL_BASE: "https://3000-rafmanrique-onclickserv-ty7rsprvycx.ws-us46.gitpod.io",
+>>>>>>> fff31c1c05200cab5dc4f91f8b4c6a162af9867b
 			token: localStorage.getItem("token") || "",
 			endPoints: ["servicios", "proveedores"],
 			servicios: [],
@@ -398,6 +402,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				catch (error) {
 					console.log(error);
+				}
+			},
+
+			handleEvaluacion: async (item) => {
+				let store = getStore();
+				let actions = getActions();
+				console.log(item)
+				let box = {"proveedor_id":item.proveedor.id, "nombre_tipo_servicio":item.orden_detalle_servicio.nombre_tipo_servicio, "resultado_evaluacion":5}
+			
+				console.log(box)
+				const response = await fetch (`${store.URL_BASE}/evaluar/`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${store.token}`
+				},
+				body: JSON.stringify(box)
+				})
+				let data = await response.json()
+				if (response.ok){
+					actions.handleGetContratos();
+					actions.handleGetPedidos();
+					console.log("Se evaluo al Proveedor")
 				}
 
 			}

@@ -16,8 +16,17 @@ export const Perfil = () => {
     email: "",
     direccion: "",
     telefono: ""
+<<<<<<< HEAD
   }
 
+=======
+}
+
+
+
+
+  
+>>>>>>> fff31c1c05200cab5dc4f91f8b4c6a162af9867b
   const { store, actions } = useContext(Context);
 
   const [modalData, setModalData] = useState([]);
@@ -37,7 +46,14 @@ export const Perfil = () => {
   }, []);
 
   return (
+<<<<<<< HEAD
 
+=======
+    
+
+
+    
+>>>>>>> fff31c1c05200cab5dc4f91f8b4c6a162af9867b
     <>
 
       {/* modal */}
@@ -191,6 +207,7 @@ export const Perfil = () => {
                 <i className="fa-solid fa-gear fa-5x my-2"></i>
                 <h3>Edita y/o Agrega un comentario sobre tu Pedido</h3>
               </div>
+<<<<<<< HEAD
               <button type="button" className="mx-2 orden-servicios"
                 onClick={() => { actions.handleEditPedido(modalData, 1) }}>
                 Servicio Cancelado
@@ -199,6 +216,22 @@ export const Perfil = () => {
                 onClick={() => { actions.handleEditPedido(modalData, 2) }}>
                 Servicio Finalizado
               </button>
+=======
+              <div className="pb-3 d-flex justify-content-center">              
+                <button type="button" className="mx-2 orden-servicios"
+                onClick={() => {actions.handleEditPedido(modalData, 1)} }>
+                  Servicio Cancelado
+                </button>
+                <button type="button" className="mx-2 orden-servicios"
+                 onClick={() => {actions.handleEditPedido(modalData, 2)} }>
+                  Servicio Finalizado
+                </button>
+                <button type="button" className="mx-2 orden-servicios"
+                 onClick={() => {actions.handleEvaluacion(modalData)} }>
+                  Servicio Evaluado
+                </button>
+                </div>
+>>>>>>> fff31c1c05200cab5dc4f91f8b4c6a162af9867b
               <div className="mb-3">
                 <textarea className="form-control" type="text w-100" name="comment" onChange={(event) => setModalData({ ...modalData, [event.target.comment]: event.target.value })}></textarea>
               </div>
