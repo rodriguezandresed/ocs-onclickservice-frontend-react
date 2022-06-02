@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Context } from '../../store/appContext';
-import {FaWindowClose, FaCheck, FaPencilAlt} from 'react-icons/fa'
+import { FaWindowClose, FaCheck, FaPencilAlt, FaStar } from 'react-icons/fa'
 import './perfil.css';
 
 export const Perfil = () => {
@@ -12,8 +12,10 @@ export const Perfil = () => {
     email: "",
     direccion: "",
     telefono: ""
-}
+  }
+  const [rating, setRating] = useState(null)
 
+  const [hover, setHover] = useState(null)
 
   const { store, actions } = useContext(Context);
 
@@ -34,10 +36,10 @@ export const Perfil = () => {
   }, []);
 
   return (
-    
 
 
-    
+
+
     <>
 
       {/* modal */}
@@ -126,7 +128,7 @@ export const Perfil = () => {
               >
                 Cerrar
               </button>
-              <button type="button" className="btn actualizar"
+              <button type="button" className="btn actualizar" data-bs-dismiss="modal"
                 onClick={() => actions.updateProfile(profileData)}>
                 Actualizar
               </button>
@@ -191,20 +193,20 @@ export const Perfil = () => {
                 <i className="fa-solid fa-gear fa-5x my-2"></i>
                 <h3>Edita y/o Agrega un comentario sobre tu Pedido</h3>
               </div>
-              <div className="pb-3 d-flex justify-content-center">              
+              <div className="pb-3 d-flex justify-content-center">
                 <button type="button" className="mx-2 orden-servicios"
-                onClick={() => {actions.handleEditPedido(modalData, 1)} }>
+                  onClick={() => { actions.handleEditPedido(modalData, 1) }}>
                   Servicio Cancelado
                 </button>
                 <button type="button" className="mx-2 orden-servicios"
-                 onClick={() => {actions.handleEditPedido(modalData, 2)} }>
+                  onClick={() => { actions.handleEditPedido(modalData, 2) }}>
                   Servicio Finalizado
                 </button>
                 <button type="button" className="mx-2 orden-servicios"
-                 onClick={() => {actions.handleEvaluacion(modalData)} }>
+                  onClick={() => { actions.handleEvaluacion(modalData) }}>
                   Servicio Evaluado
                 </button>
-                </div>
+              </div>
               <div className="mb-3">
                 <textarea className="form-control" type="text w-100" name="comment" onChange={(event) => setModalData({ ...modalData, [event.target.comment]: event.target.value })}></textarea>
               </div>
@@ -223,6 +225,67 @@ export const Perfil = () => {
           </div>
         </div>
       </div>
+
+
+      {/* modal 4 */}
+      <div
+        className="modal fade"
+        id="exampleModal4"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-body px-5">
+              <div className="text-center my-3">
+                <i className="fa-solid fa-gear fa-5x my-2"></i>
+                <h3>Califica al proveedor</h3>
+              </div>
+              <div className="pb-3 d-flex justify-content-center">
+                <div>
+                  {[...Array(5)].map((star, i) => {
+
+                    const ratingValue = i + 1;
+
+                    return (
+
+                      <label>
+                        <input
+                          type="radio"
+                          name="rating"
+                          value={ratingValue}
+                          onClick={() => setRating(ratingValue)}
+                        />
+
+                        <FaStar
+                          className="star"
+                          color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                          size={50}
+                          onMouseEnter={() => setHover(ratingValue)}
+                          onMouseLeave={() => setHover(null)} />
+                      </label>);
+                  })}
+                </div>
+              </div>
+              <div className="mb-3">
+                <textarea className="form-control" type="text w-100" name="comment" onChange={(event) => setModalData({ ...modalData, [event.target.comment]: event.target.value })}></textarea>
+              </div>
+              <button type="button" className="btn enviar-comentario" data-bs-dismiss="modal">Calificar</button>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       {/* desarrollo página  */}
       <div className="container pt-5">
@@ -461,8 +524,9 @@ export const Perfil = () => {
                                   <p>
                                     {"Proveedor: " + item.proveedor.nombre +
                                       " " +
-                                      " - Servicio " +
-                                      item.orden_detalle_servicio.nombre}<br></br> {" Aceptada: "} {item.status_orden_aceptada === true ? <FaCheck /> : <FaWindowClose />} {" Cancelada: "} {item.status_orden_cancelada === true ? <FaCheck /> : <FaWindowClose />}  {" Recibida: "} {item.status_orden_recibida === true ? <FaCheck /> : <FaWindowClose />}
+                                      " - Servicio: " +
+                                      item.orden_detalle_servicio.nombre}<br></br>{" Telefono: " +
+                                        item.proveedor.telefono}<br></br> {" Aceptada: "} {item.status_orden_aceptada === true ? <FaCheck /> : <FaWindowClose />} {" Cancelada: "} {item.status_orden_cancelada === true ? <FaCheck /> : <FaWindowClose />}  {" Recibida: "} {item.status_orden_recibida === true ? <FaCheck /> : <FaWindowClose />}
                                     {" Finalizada: "} {item.status_orden_finalizada === true ? <FaCheck /> : <FaWindowClose />}
                                     <br></br> {"Comentarios: "} {item.comentario != null ? item.comentario : <FaWindowClose />}</p>
                                 </p>
@@ -470,12 +534,21 @@ export const Perfil = () => {
                               <div className="col-2 d-flex pt-3 ">
                                 <button
                                   type="button"
-                                  className="btn status w-100 h-50 "
+                                  className="btn status w-200 h-50 "
                                   data-bs-toggle="modal"
                                   data-bs-target="#exampleModal3"
                                   onClick={() => { setModalData(item) }}
                                 >
                                   <FaPencilAlt />
+                                </button>
+                                <button
+                                  type="button"
+                                  className="btn status w-200 h-50 mx-2"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal4"
+
+                                >
+                                  <FaStar />
                                 </button>
                               </div>
 
@@ -511,25 +584,24 @@ export const Perfil = () => {
                   {store.usuario && store.usuario.servicio <= 0 ?
 
                     <>
-                      <div className="accordion-body">No tienes servicios agregados en tu perfil</div>
-                      {console.log(Array.isArray(store.usuario.servicio), "Holaaax2")}
+                      <h4>¿{store.usuario.nombre} no posees ningun servicio? ¿Qué estas esperando para ser parte de nuestros profesionales?</h4>
                     </>
 
-                    : 
-                    
-                    store.usuario.servicio.map((item) => {
+                    :
+
+                    store.usuario.servicio?.map((item) => {
                       return (
 
 
                         <p key={item.id} className="ms-2 d-flex mt-2"> <span>{item.nombre}</span> </p>
                       )
-                    } )
+                    })
 
-                    
+
 
                   }
+                  <p>¿Deseas agregar tus servicios? <Link to="/registerservicio"> Click aqui</Link> </p>
                 </div>
-                <div><p>Para agregar tus servicios haz <Link to="/registerservicio">Click aqui</Link></p></div>
               </div>
             </div>
           </div>

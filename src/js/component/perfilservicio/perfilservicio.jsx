@@ -5,8 +5,9 @@ import { Context } from '../../store/appContext';
 
 
 
+
 export const Perfilservicio = () => {
-    
+
     const { store, actions } = useContext(Context);
     const params = useParams();
 
@@ -29,9 +30,9 @@ export const Perfilservicio = () => {
     //         ...values, [event.target.name]: event.target.value
     //     });
     // };
-    
+
     console.log(store.usuario.nombre, "holaaaa")
-    const {categoria, id} = params;
+    const { categoria, id } = params;
 
     const [info, setInfo] = useState({});
 
@@ -56,7 +57,7 @@ export const Perfilservicio = () => {
         // e.preventDefault()
         console.log(values, "OLOOO")
         actions.handlePostPedidos(values);
-    
+
     };
 
     useEffect(() => {
@@ -64,15 +65,48 @@ export const Perfilservicio = () => {
         actions.getProfile()
     }, [])
 
-    
-    
+
+
     return (
         <>
 
             {/* modal */}
+            <div
+                className="modal fade"
+                id="exampleModal3"
+                tabIndex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-body px-5">
+                            <div className="text-center my-3">
+                                <i className="fa-solid fa-check fa-5x my-2"></i>
+                                <h3>Solicitud de servicio aceptada. En tu perfil encontraras los datos de contacto del proveedor</h3>
+                            </div>
+                            <div className="pb-3 d-flex justify-content-center">
+                                <Link to="/perfil">
+                                <button type="button" className="mx-2 orden-servicios" data-bs-dismiss="modal">
+                                    Ir a mi perfil
+                                </button>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                            >
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            
-            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {/* <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -156,7 +190,7 @@ export const Perfilservicio = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             {/* desarrollo página  */}
             <div className="container pt-5">
                 <div className="row">
@@ -176,7 +210,7 @@ export const Perfilservicio = () => {
                         </div>
                         <div className="row d-flex align-items-center px-5 pb-3">
                             <div className="col-5 foto-perfil">
-
+                                <img src={store.detalles.imagen} />
                             </div>
                             <div className="col-7 date-perfil pt-4">
                                 <h2>{store.detalles.nombre}</h2>
@@ -235,53 +269,54 @@ export const Perfilservicio = () => {
                                 <div id="flush-collapseFour" className="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
                                     <div className="accordion-body list-servicios">
                                         {/* <p><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Plomeria</a></p> */}
-                                       {store.detalles.servicio?.map((item,index) => {
-                                           console.log(item, "item")
+                                        {store.detalles.servicio?.map((item, index) => {
+                                            console.log(item, "item")
                                             return (
                                                 <div key={index}>
-                                                <div className="row ">
-                                                    <div className="col-6">
-                                                  <h4><b  className="ms-2 " > <span>{item?.nombre}</span></b> </h4>  
+                                                    <div className="row ">
+                                                        <div className="col-6">
+                                                            <h4><b className="ms-2 " > <span>{item?.nombre}</span></b> </h4>
+                                                        </div>
+
+
+                                                        <div className="col-6">
+
+                                                            {store.token.length != "" ? <>
+                                                                <button
+                                                                    className="btn status"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#exampleModal3"
+                                                                    onClick={() => handleSubmitContrato(
+                                                                        {
+                                                                            nombre_proveedor: item.proveedor.nombre,
+                                                                            nombre_tipo_servicio: item.nombre_tipo_servicio,
+
+                                                                        }
+                                                                    )}
+                                                                >
+                                                                    Solicitar servicio
+                                                                </button>
+
+                                                            </>
+                                                                :
+                                                                <>
+
+                                                                </>
+                                                            }
+
+                                                        </div>
+                                                        <div className="col-6">
+                                                            <b> <i className="fa-solid fa-file-lines fa-1x"></i>  Nombre del sub servicio</b>
+                                                            <p className='detalle-servicio'>{item?.sub_servicio} </p>
+                                                            <b><i className="fa-solid fa-file-lines fa-1x"></i> Detalle del servicio</b>
+                                                            <p className='detalle-servicio'>{item?.detalle} </p>
+                                                        </div>
                                                     </div>
 
-                                                    
-                                               <div className="col-6">
-
-                                                   {store.token.length != "" ? <>
-                                                   <button 
-                                                    className="btn status"
-                                                                                        
-                                                    onClick={()=> handleSubmitContrato( 
-                                                       {
-                                                        nombre_proveedor: item.proveedor.nombre,
-                                                        nombre_tipo_servicio: item.nombre_tipo_servicio,
-
-                                                    }
-                                                    )}
-                                                    >
-                                                        Solicitar servicio
-                                                    </button>
-                                                   
-                                                   </>
-                                                    :
-                                                    <>
-                                                    
-                                                    </> 
-                                                }
-                                             
-                                               </div>
-                                                    <div className="col-6">
-                                                        <b> <i className="fa-solid fa-file-lines fa-1x"></i>  Nombre del sub servicio</b>
-                                                        <p className='detalle-servicio'>{item?.sub_servicio} </p>
-                                                        <b><i className="fa-solid fa-file-lines fa-1x"></i> Detalle del servicio</b>
-                                                        <p className='detalle-servicio'>{item?.detalle} </p>
-                                                    </div>
-                                                </div>
-                                                   
                                                 </div>
                                             )
                                         })
-                                       }
+                                        }
 
                                     </div>
                                 </div>
@@ -296,48 +331,7 @@ export const Perfilservicio = () => {
                                     <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
                                 </div>
                             </div>
-                            
-                            {store.token.length != "" ? 
-                            <>
-                             <div className="accordion-item">
-                                <h2 className="accordion-header" id="flush-headingInformation">
-                                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseInformation" aria-expanded="false" aria-controls="flush-collapseInformation">
-                                        <i className="fa-solid fa-shield-halved fa-2x mx-2"></i> Información de contacto
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseInformation" className="accordion-collapse collapse" aria-labelledby="flush-headingInformation" data-bs-parent="#accordionFlushExample">
-                                    <div className="accordion-body">
-                                    <div className="row">
-                                            <div className="col-5 mt-3">
-                                                <h4>Correo</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>{store.detalles.email}</p>
-                                            </div>
-                                            <div className="col-5 mt-3">
-                                                <h4>Telefono</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>{store.detalles.telefono}</p>
-                                            </div>
-                                            <div className="col-5 mt-3">
-                                                <h4>Dirección</h4>
-                                            </div>
-                                            <div className="col-7 datos-perfil mt-3">
-                                                <p>{store.detalles.direccion}</p>
-                                            </div>
-                                         
-                                        </div>
-                                    
-                                    </div>
-                                </div>
-                            </div>
-                            </> : 
-                            <>
-                            
-                            </>
-                            }
-                           
+
                             <div className="accordion-item">
                                 <h2 className="accordion-header" id="flush-headingThree">
                                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">

@@ -39,13 +39,15 @@ export const Navbar = () => {
 						{
 							<>
 								<Link to="/perfil">
-									<button type="button">Mi perfil</button>
+									<button className="me-2" type="button">Mi perfil</button>
 								</Link>
-								<button type="button" onClick={actions.handleLogOut}>
 								<Link to="/">
+								<button type="button" onClick={actions.handleLogOut}>
+								
 									Logout
-								</Link>
+								
 								</button>
+								</Link>
 							</>}
 					</>
 					: (<>
