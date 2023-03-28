@@ -303,6 +303,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					 box = {"status_orden_aceptada":false, "status_orden_cancelada":true, "status_orden_recibida":item.status_orden_recibida, "id":item.id, "cliente_id":item.cliente.id}
 				}
 				console.log(status)
+				console.log(box)
 				const response = await fetch (`${store.URL_BASE}/editar_orden_proveedor`, {
 				method: "PUT",
 				headers: {

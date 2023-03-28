@@ -290,6 +290,7 @@ export const Perfilservicio = () => {
                                                                         {
                                                                             nombre_proveedor: item.proveedor.nombre,
                                                                             nombre_tipo_servicio: item.nombre_tipo_servicio,
+                                                                        
 
                                                                         }
                                                                     )}
